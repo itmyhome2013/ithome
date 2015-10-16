@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      ${JSP_Messager_Title}<import resource="classpath:${_N_Context_T_xml_src}"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- ${JSP_Messager_Title}Dao实现 -->
+	<bean id="${Spring_DaoIndex}"
+		class="${_N_Dao_T_java_pak}">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="${domain}_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="${domain}_object" class="${pkgDomain}.${domain}"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="${Spring_ServerIndex}"
+		class="${_N_ManagerImpl_T_java_pak}">
+		<property name="${var_serverUserDao}">
+			<ref bean="${Spring_DaoIndex}" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="${Spring_ProxyIndex}"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					${_N_ManagerInter_T_java_pak}
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="${Spring_ServerIndex}" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="${Spring_TransactionSource}" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="${Spring_TransactionSource}"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

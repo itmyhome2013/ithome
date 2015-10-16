@@ -1,0 +1,227 @@
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="/WEB-TAG/platForm.tld" prefix="PF"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<base href="<PF:basePath/>">
+		<title>留言板</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<jsp:include page="/PLUGIN/document/commons/include_all.jsp"></jsp:include>
+	</head>
+	<body>
+		<div class="search_div">
+			<form id="dom_var_search">
+				主题:
+				<input name="TITLE:like" type="text">
+				说明:
+				<input name="PCONTENT:like" type="text">
+				发送人:
+				<input name="CUSER:like" type="text">
+				接收人:
+				<input name="READUSERID:like" type="text">
+				<a id="a_var_search" href="javascript:void(0)"
+					class="easyui-linkbutton" data-options="plain:true"
+					iconCls="icon-search">查询</a>
+				<a id="a_var_reset" href="javascript:void(0)"
+					class="easyui-linkbutton" data-options="plain:true"
+					iconCls="icon-reload">清除条件</a>
+			</form>
+		</div>
+		<div class="datagrid_div">
+			<table id="dom_var_grid" style="height: 350px">
+				<thead>
+					<tr>
+						<th data-options="field:'ck',checkbox:true"></th>
+						<th field="CTIME" data-options="sortable:true" width="80">
+							创建时间
+						</th>
+						<th field="CONTENT" data-options="sortable:true" width="80">
+							内容
+						</th>
+						<th field="TITLE" data-options="sortable:true" width="80">
+							主题
+						</th>
+						<th field="PCONTENT" data-options="sortable:true" width="80">
+							说明
+						</th>
+						<th field="READSTATE" data-options="sortable:true" width="80">
+							阅读状态
+						</th>
+						<th field="CUSER" data-options="sortable:true" width="80">
+							发送人
+						</th>
+						<th field="READUSERID" data-options="sortable:true" width="80">
+							接收人
+						</th>
+					</tr>
+				</thead>
+			</table>
+			<!-- 分页栏 -->
+			<div id="dom_var_pagination" class="easyui-pagination"></div>
+		</div>
+		<!-- 弹出窗口 -->
+		<div id="dom_var_window"></div>
+		<!-- 表格右键菜单 -->
+		<div id="dom_var_menu" class="easyui-menu" style="width: 120px;">
+			<div name="view" data-options="iconCls:'icon-tip'">
+				查看
+			</div>
+			<div name="edit" data-options="iconCls:'icon-edit'">
+				修改
+			</div>
+			<div class="menu-sep"></div>
+			<div name="del" data-options="iconCls:'icon-remove'">
+				删除
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var TOOL_BAR = [ {
+		id : 'view',
+		text : '查看',
+		iconCls : 'icon-tip',
+		handler : function() {
+			shortMenuOpen_grid(null, {
+				name : 'view'
+			})
+		}
+	}, {
+		id : 'add',
+		text : '发送私人消息',
+		iconCls : 'icon-add',
+		handler : function() {
+			shortMenuOpen_grid(null, {
+				name : 'add'
+			})
+		}
+	}, {
+		id : 'del',
+		text : '删除',
+		iconCls : 'icon-remove',
+		handler : function() {
+			shortMenuOpen_grid(null, {
+				name : 'del'
+			})
+		}
+	} ];
+	var url_delAction = "admin/FarmDocmessagedeleteCommit.do";
+	var url_formAction = "admin/FarmDocmessageshow.do";
+	var url_searchAction = "admin/FarmDocmessagequeryAll.do";
+	var title_window = "留言板";
+	var DOM_GRID_TABLE = '#dom_var_grid';
+	var DOM_PAGINATION_DIV = '#dom_var_pagination';
+	var DOM_MENU_DIV = '#dom_var_menu';
+	var DOM_WINDOW_DIV = '#dom_var_window';
+	var DOM_SEARCH_FORM = '#dom_var_search';
+	var LINK_SEARCH = '#a_var_search';
+	var LINK_RESET = '#a_var_reset';
+	$(function() {
+		initLayout();
+	});
+</script>
+</html>
+
+
+
+
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="/WEB-TAG/platForm.tld" prefix="PF"%>
+<!--留言板-->
+<form id="dom_var_entity">
+	<div class="TableTitle">
+		<c:if test="${pageset.pageType==1}">新增${JSP_Messager_Title}记录</c:if>
+		<c:if test="${pageset.pageType==2}">修改${JSP_Messager_Title}记录</c:if>
+		<c:if test="${pageset.pageType==0}">浏览${JSP_Messager_Title}记录</c:if>
+		<input type="hidden" name="entity.id" value="${entity.id}">
+	</div>
+	<table class="editTable">
+		<c:if test="${pageset.pageType!=0}">
+			<tr>
+				<td class="title">
+					接收人:
+				</td>
+				<td colspan="3">
+					<input type="text" class="easyui-validatebox" readonly="readonly"
+						data-options="required:true,validType:',maxLength[16]'"
+						id="entity_readuserid" value="${entity.readuserid}">
+					<input type="hidden" name="entity.readuserid" id="entityreaduserid">
+					<a id="form_AloneUser_a_ChoosePop" href="javascript:void(0)"
+						class="easyui-linkbutton" style="color: #000000;">选择</a>
+					<div id="win_AloneUser_ChoosPop" class="easyui-window"
+						style="width: 600px; height: 350px;" title='选择用户'
+						data-options="closed:true,modal:true,href:'admin/AloneUser_ACTION_ALERT.do'"></div>
+					<script type="text/javascript">
+	$(function() {
+		initChoose_Window_Default('#form_AloneUser_a_ChoosePop',
+				'#win_AloneUser_ChoosPop', function(rows) {
+					$('#entity_readuserid').val(rows[0].A_NAME);
+					$('#entityreaduserid').val(rows[0].ID);
+				});
+	});
+</script>
+				</td>
+			</tr>
+		</c:if>
+		<tr>
+			<td class="title">
+				主题:
+			</td>
+			<td colspan="3">
+				<input type="text" class="easyui-validatebox"
+					data-options="required:true,validType:',maxLength[32]'"
+					id="entity_title" name="entity.title" value="${entity.title}">
+
+			</td>
+		</tr>
+		<tr>
+			<td class="title">
+				内容:
+			</td>
+			<td colspan="3">
+				<textarea rows="3" cols="32" class="easyui-validatebox"
+					data-options="required:true,validType:',maxLength[128]'"
+					id="entity_content" name="entity.content">${entity.content}</textarea>
+			</td>
+		</tr>
+		<c:if test="${pageset.pageType==1}">
+			<!--新增-->
+		</c:if>
+		<c:if test="${pageset.pageType==2}">
+			<!--修改-->
+		</c:if>
+		<c:if test="${pageset.pageType==0}">
+			<!--浏览-->
+		</c:if>
+		<tr>
+			<th colspan="4">
+				<div class="div_button">
+					<c:if test="${pageset.pageType==1}">
+						<a id="dom_var_add_entity" href="javascript:void(0)"
+							class="easyui-linkbutton">增加</a>
+					</c:if>
+					<c:if test="${pageset.pageType==2}">
+						<a id="dom_var_edit_entity" href="javascript:void(0)"
+							class="easyui-linkbutton">修改</a>
+					</c:if>
+					<a id="dom_var_cancle_form" href="javascript:void(0)"
+						class="easyui-linkbutton" style="color: #000000;">取消</a>
+				</div>
+			</th>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript">
+	var submitAddAction = 'admin/FarmDocmessageaddCommit.do';
+	var submitEditAction = 'admin/FarmDocmessageeditCommit.do';
+	var currentPageType = '${pageset.pageType}';
+	var DOM_DATAFORM_FORM = '#dom_var_entity';
+	var LINK_FORM_ADD = '#dom_var_add_entity';
+	var LINK_FORM_EDIT = '#dom_var_edit_entity';
+	var LINK_FORM_CANCEL = '#dom_var_cancle_form';
+	$(function() {
+		initEntity();
+	});
+	//-->
+</script>

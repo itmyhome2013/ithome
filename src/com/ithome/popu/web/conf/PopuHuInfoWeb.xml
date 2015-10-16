@@ -1,0 +1,70 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      房屋基础信息<include file="org/bkgd/popu/web/conf/PopuHuInfoWeb.xml"></include> -->
+<struts>
+	<!-- 房屋基础信息 -->
+	<package name="PopuHuInfo_Ajax_code" extends="json-default">
+		<!-- 房屋基础信息查询 -->
+		<action name="PopuHuInfoqueryAll" method="queryall"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 房屋基础信息增加 -->
+		<action name="PopuHuInfoaddCommit" method="addSubmit"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 房屋基础信息删除 -->
+		<action name="PopuHuInfodeleteCommit" method="delSubmit"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 房屋基础信息修改 -->
+		<action name="PopuHuInfoeditCommit" method="editSubmit"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 导出报表 -->
+		<action name="exportRepothuInfo" method="report"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="report.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+		<!--身份证唯一性校验 -->
+		<action name="IdCardCheckOnly" method="idCardCheckOnly"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	<package name="PopuHuInfo_Jsp_code" extends="struts-default">
+	
+		<action name="PopuHuInfoshow" method="view"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result>/popu/pPopuHuInfoEntity.jsp</result>
+		</action>
+		
+	
+		<!-- 房屋基础信息详细【修改、浏览】 -->
+		<action name="PopuHuInfoAllShow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuHuInfoQuery">
+			<result>/popu/pPopuHuInfoAll.jsp</result>
+		</action>
+		<!-- html加载房屋基础信息控制台 -->
+		<action name="PopuHuInfo_ACTION_CONSOLE">
+			<result>/popu/pPopuHuInfoLayout.jsp</result>
+		</action>
+		<!-- ajax加载房屋基础信息选择页面 -->
+		<action name="PopuHuInfo_ACTION_ALERT" >
+			<result>/popu/pPopuHuInfoGrid.jsp</result>
+		</action>
+	</package>
+</struts>

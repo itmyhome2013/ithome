@@ -1,0 +1,61 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      非化石文物信息<include file="org/bkgd/hrmis/relic/web/conf/HrmisRelicStandWeb.xml"></include> -->
+<struts>
+	<!-- 非化石文物信息 -->
+	<package name="HrmisRelicStand_Ajax_code" extends="json-default">
+		<!-- 非化石文物信息查询 -->
+		<action name="HrmisRelicStandqueryAll" method="queryall"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 非化石文物信息增加 -->
+		<action name="HrmisRelicStandaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 非化石文物信息删除 -->
+		<action name="HrmisRelicStanddeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 非化石文物信息修改 -->
+		<action name="HrmisRelicStandeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisRelicStand_Jsp_code" extends="struts-default">
+		<!-- 集成界面 -->
+		<action name="HrmisRelicStandBaseshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result>/hrmis/relic/pHrmisRelicStandBase.jsp</result>
+		</action>
+		<!-- 非化石文物信息详细【修改、浏览】 -->
+		<action name="HrmisRelicStandshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result>/hrmis/relic/pHrmisRelicStandEntity.jsp</result>
+		</action>
+		<!-- html加载非化石文物信息控制台 -->
+		<action name="HrmisRelicStand_ACTION_CONSOLE">
+			<result>/hrmis/relic/pHrmisRelicStandLayout.jsp</result>
+		</action>
+		<!-- ajax加载非化石文物信息选择页面 -->
+		<action name="HrmisRelicStand_ACTION_ALERT" >
+			<result>/hrmis/relic/pHrmisRelicStandGrid.jsp</result>
+		</action>
+		<!-- 导出  -->
+		<action name="HrmisRelicStandReport" method="report"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicStandQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="relicStand.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+</struts>

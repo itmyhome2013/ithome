@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      修复照片资料<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRepairfileWeb.xml"></include> -->
+<struts>
+	<!-- 修复照片资料 -->
+	<package name="HrmisAppRepairfile_Ajax_code" extends="json-default">
+		<!-- 修复照片资料查询 -->
+		<action name="HrmisAppRepairfilequeryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRepairfileQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 修复照片资料增加 -->
+		<action name="HrmisAppRepairfileaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRepairfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 修复照片资料删除 -->
+		<action name="HrmisAppRepairfiledeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRepairfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 修复照片资料修改 -->
+		<action name="HrmisAppRepairfileeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRepairfileQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppRepairfile_Jsp_code" extends="struts-default">
+		<!-- 修复照片资料详细【修改、浏览】 -->
+		<action name="HrmisAppRepairfileshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRepairfileQuery">
+			<result>/hrmis/app/pHrmisAppRepairfileEntity.jsp</result>
+		</action>
+		<!-- html加载修复照片资料控制台 -->
+		<action name="HrmisAppRepairfile_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppRepairfileLayout.jsp</result>
+		</action>
+		<!-- ajax加载修复照片资料选择页面 -->
+		<action name="HrmisAppRepairfile_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppRepairfileGrid.jsp</result>
+		</action>
+	</package>
+</struts>

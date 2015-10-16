@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      清点库房<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRecheckstoreWeb.xml"></include> -->
+<struts>
+	<!-- 清点库房 -->
+	<package name="HrmisAppRecheckstore_Ajax_code" extends="json-default">
+		<!-- 清点库房查询 -->
+		<action name="HrmisAppRecheckstorequeryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecheckstoreQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 清点库房增加 -->
+		<action name="HrmisAppRecheckstoreaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecheckstoreQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 清点库房删除 -->
+		<action name="HrmisAppRecheckstoredeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecheckstoreQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 清点库房修改 -->
+		<action name="HrmisAppRecheckstoreeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecheckstoreQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppRecheckstore_Jsp_code" extends="struts-default">
+		<!-- 清点库房详细【修改、浏览】 -->
+		<action name="HrmisAppRecheckstoreshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecheckstoreQuery">
+			<result>/hrmis/app/pHrmisAppRecheckstoreEntity.jsp</result>
+		</action>
+		<!-- html加载清点库房控制台 -->
+		<action name="HrmisAppRecheckstore_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppRecheckstoreLayout.jsp</result>
+		</action>
+		<!-- ajax加载清点库房选择页面 -->
+		<action name="HrmisAppRecheckstore_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppRecheckstoreGrid.jsp</result>
+		</action>
+	</package>
+</struts>

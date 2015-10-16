@@ -1,0 +1,40 @@
+package ${pkg};
+
+import junit.framework.Assert;
+import ${pkgDomain}.${domain};
+import ${_N_ManagerInter_T_java_pak};
+
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import com.farm.web.spring.BeanFactory;
+import com.farm.web.test.FarmTest;
+ /**
+ * ${JSP_Messager_Title}类功能说明
+ *
+ * @author 作者:自动生成
+ * @version 日期(用日期代替版本号)+版本备注
+ */ 
+public class ${_N_ManagerTest_T_java_name} extends FarmTest {
+	${_N_ManagerInter_T_java_name} server;
+	${domain} entity;
+
+	@Test
+	public void add() {
+		entity = server.insert${domain}Entity(entity, user);
+		server.delete${domain}Entity(entity.getId(), user);
+		Assert.assertTrue(true);
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		server = (${_N_ManagerInter_T_java_name}) BeanFactory
+				.getBean("${Spring_ProxyIndex}");
+		entity = new ${domain}();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+}

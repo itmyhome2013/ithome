@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      流传经历<include file="org/bkgd/hrmis/relic/web/conf/HrmisRelicCollectWeb.xml"></include> -->
+<struts>
+	<!-- 流传经历 -->
+	<package name="HrmisRelicCollect_Ajax_code" extends="json-default">
+		<!-- 流传经历查询 -->
+		<action name="HrmisRelicCollectqueryAll" method="queryall"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicCollectQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 流传经历增加 -->
+		<action name="HrmisRelicCollectaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicCollectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 流传经历删除 -->
+		<action name="HrmisRelicCollectdeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicCollectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 流传经历修改 -->
+		<action name="HrmisRelicCollecteditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicCollectQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisRelicCollect_Jsp_code" extends="struts-default">
+		<!-- 流传经历详细【修改、浏览】 -->
+		<action name="HrmisRelicCollectshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicCollectQuery">
+			<result>/hrmis/relic/pHrmisRelicCollectEntity.jsp</result>
+		</action>
+		<!-- html加载流传经历控制台 -->
+		<action name="HrmisRelicCollect_ACTION_CONSOLE">
+			<result>/hrmis/relic/pHrmisRelicCollectLayout.jsp</result>
+		</action>
+		<!-- ajax加载流传经历选择页面 -->
+		<action name="HrmisRelicCollect_ACTION_ALERT" >
+			<result>/hrmis/relic/pHrmisRelicCollectGrid.jsp</result>
+		</action>
+	</package>
+</struts>

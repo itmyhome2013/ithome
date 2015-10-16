@@ -1,0 +1,22 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 受限资源配置  -->
+	<include file="com/farm/console/web/conf/PopActionWeb.xml"></include>
+	<!-- 数据字典配置  -->
+	<include file="com/farm/console/web/conf/PopDictionaryWeb.xml"></include>
+	<include file="com/farm/console/web/conf/PopDictionaryTypeWeb.xml"></include>
+	<!-- 权限菜单配置  -->
+	<include file="com/farm/console/web/conf/PopMenuWeb.xml"></include>
+	<!-- 系统参数配置  -->
+	<include file="com/farm/console/web/conf/AloneParameterWeb.xml"></include>
+	<!-- 系统权限组  -->
+	<include file="com/farm/console/web/conf/alonerolegroupWeb.xml"></include>
+	<!-- 系统用户  -->
+	<include file="com/farm/console/web/conf/AloneUserWeb.xml"></include>
+	<!-- 组织机构  -->
+	<include file="com/farm/console/web/conf/AloneOrganizationWeb.xml"></include>
+	<!-- 系统日志 -->
+	<include file="com/farm/console/web/conf/AloneApplogWeb.xml"></include>
+</struts>

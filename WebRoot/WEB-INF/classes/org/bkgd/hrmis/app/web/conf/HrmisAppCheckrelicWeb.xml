@@ -1,0 +1,66 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      文物清点信息<include file="org/bkgd/hrmis/app/web/conf/HrmisAppCheckrelicWeb.xml"></include> -->
+<struts>
+	<!-- 文物清点信息 -->
+	<package name="HrmisAppCheckrelic_Ajax_code" extends="json-default">
+		<!-- 文物清点信息查询 -->
+		<action name="HrmisAppCheckrelicqueryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 文物清点信息增加 -->
+		<action name="HrmisAppCheckrelicaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文物清点信息删除 -->
+		<action name="HrmisAppCheckrelicdeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 文物清点信息修改 -->
+		<action name="HrmisAppCheckreliceditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文物盘点 状态改变操作 -->
+		<action name="HrmisAppCheckrelicCheck" method="check"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppCheckrelic_Jsp_code" extends="struts-default">
+		<!-- 文物清点盘点备注】 -->
+		<action name="HrmisAppCheckrelicshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result>/hrmis/app/pHrmisAppCheckrelicEntity.jsp</result>
+		</action>
+		<!-- html加载文物清点信息控制台 -->
+		<action name="HrmisAppCheckrelic_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppCheckrelicLayout.jsp</result>
+		</action>
+		<!-- ajax加载文物清点信息选择页面 -->
+		<action name="HrmisAppCheckrelic_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppCheckrelicGrid.jsp</result>
+		</action>
+		<!-- html加载文物清点信息 只是查看 -->
+		<action name="HrmisAppCheckrelic_ACTION_CONSOLE_VIEW">
+			<result>/hrmis/app/pHrmisAppCheckrelicLayoutView.jsp</result>
+		</action>
+		<!-- 导出清点任务记录 -->
+		<action name="exportExcelAppCheckRelic" method="report"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckrelicQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="log.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      库房管理<import resource="classpath:org/bkgd/hrmis/base/config/HrmisStoreContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 库房管理Dao实现 -->
+	<bean id="hrmis_storeDaoId"
+		class="org.bkgd.hrmis.base.dao.HrmisStoreDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisStore_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisStore_object" class="org.bkgd.hrmis.base.domain.HrmisStore"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="hrmis_storeServerId"
+		class="org.bkgd.hrmis.base.server.HrmisStoreManagerImpl">
+		<property name="hrmisStoreDao">
+			<ref bean="hrmis_storeDaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="hrmis_storeProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					org.bkgd.hrmis.base.server.HrmisStoreManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="hrmis_storeServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYhrmis_storeTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYhrmis_storeTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

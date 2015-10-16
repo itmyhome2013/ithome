@@ -1,0 +1,46 @@
+﻿package ${pkg};
+
+import ${pkgDomain}.${domain};
+import com.farm.console.prisist.domain.AloneUser;
+import com.farm.core.sql.query.DataQuery;
+ /**
+ * ${JSP_Messager_Title}类功能说明
+ *
+ * @author 作者:自动生成
+ * @version 日期(用日期代替版本号)+版本备注
+ */ 
+public interface ${_N_ManagerInter_T_java_name} {
+	/**
+	 *新增${JSP_Messager_Title}实体
+	 * 
+	 * @param entity
+	 */
+	public ${domain} insert${domain}Entity(${domain} entity,AloneUser user);
+	/**
+	 *修改${JSP_Messager_Title}实体
+	 * 
+	 * @param entity
+	 */
+	public ${domain} edit${domain}Entity(${domain} entity,AloneUser user);
+	/**
+	 *删除${JSP_Messager_Title}实体
+	 * 
+	 * @param entity
+	 */
+	public void delete${domain}Entity(String entity,AloneUser user);
+	/**
+	 *获得${JSP_Messager_Title}实体
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ${domain} get${domain}Entity(String id);
+	/**
+	 * 创建一个基本查询用来查询当前${JSP_Messager_Title}实体
+	 * 
+	 * @param query
+	 *            传入的查询条件封装
+	 * @return
+	 */
+	public DataQuery create${domain}SimpleQuery(DataQuery query);
+}

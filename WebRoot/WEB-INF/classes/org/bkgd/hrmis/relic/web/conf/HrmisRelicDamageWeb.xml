@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      损坏发生记录<include file="org/bkgd/hrmis/relic/web/conf/HrmisRelicDamageWeb.xml"></include> -->
+<struts>
+	<!-- 损坏发生记录 -->
+	<package name="HrmisRelicDamage_Ajax_code" extends="json-default">
+		<!-- 损坏发生记录查询 -->
+		<action name="HrmisRelicDamagequeryAll" method="queryall"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicDamageQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 损坏发生记录增加 -->
+		<action name="HrmisRelicDamageaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicDamageQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 损坏发生记录删除 -->
+		<action name="HrmisRelicDamagedeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicDamageQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 损坏发生记录修改 -->
+		<action name="HrmisRelicDamageeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicDamageQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisRelicDamage_Jsp_code" extends="struts-default">
+		<!-- 损坏发生记录详细【修改、浏览】 -->
+		<action name="HrmisRelicDamageshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicDamageQuery">
+			<result>/hrmis/relic/pHrmisRelicDamageEntity.jsp</result>
+		</action>
+		<!-- html加载损坏发生记录控制台 -->
+		<action name="HrmisRelicDamage_ACTION_CONSOLE">
+			<result>/hrmis/relic/pHrmisRelicDamageLayout.jsp</result>
+		</action>
+		<!-- ajax加载损坏发生记录选择页面 -->
+		<action name="HrmisRelicDamage_ACTION_ALERT" >
+			<result>/hrmis/relic/pHrmisRelicDamageGrid.jsp</result>
+		</action>
+	</package>
+</struts>

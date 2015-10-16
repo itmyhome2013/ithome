@@ -1,0 +1,72 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 组织机构 -->
+	<package name="AloneOrganization_Ajax_code" extends="json-default">
+		<!-- 组织机构查询 -->
+		<action name="AloneOrganizationqueryAll" method="queryall"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 组织机构增加 -->
+		<action name="AloneOrganizationaddCommit" method="addSubmit"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 组织机构删除 -->
+		<action name="AloneOrganizationdeleteCommit" method="delSubmit"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 组织机构修改 -->
+		<action name="AloneOrganizationeditCommit" method="editSubmit"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 加载组织机构_树状列表 -->
+		<action name="ALONEORG_SYSBASE_TREENODE" method="loadTreeNode"  
+            class="com.farm.console.web.action.ActionAloneOrganizationQuery">  
+            <result type="json">  
+                <param name="root">treeNodes</param>  
+            </result>  
+        </action>  
+		<!-- 验证组织机构名称是否唯一 -->
+		<action name="ALONEORG_SYSBASE_ValidateIsUniqName" method="ValidateIsUniqName"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 移动组织机构 -->
+		<action name="ALONEORG_SYSBASE_moveOrg" method="moveOrg"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 验证是否是顶级节点 -->
+		<action name="ALONEORG_SYSBASE_ValidateIsTopNode" method="ValidateIsTopNode"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="AloneOrganization_Jsp_code" extends="struts-default">
+		<!-- 加载组织机构控制台 -->
+		<action name="AloneOrganization_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result>/PLUGIN/pop/pAloneOrganizationLayout.jsp</result>
+		</action>
+		<!-- 加载组织机构控制台_浏览 -->
+		<action name="AloneOrganization_ACTION_View" method="forSend"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result>/PLUGIN/pop/pAloneOrganizationView.jsp</result>
+		</action>
+		<!-- 组织机构实体导航面板。实体页面按标签分开。{[新增|修改|浏览] | 添加该组织结构下的人员} -->
+		<action name="AloneOrganization_ENTITY_NavigatPage" method="forSend"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result>/PLUGIN/pop/pAloneOrgEntityNavigatPage.jsp</result>
+		</action>
+		<!-- 组织机构详细【修改、浏览】 -->
+		<action name="AloneOrganizationshow" method="view"
+			class="com.farm.console.web.action.ActionAloneOrganizationQuery">
+			<result>/PLUGIN/pop/pAloneOrganizationEntity.jsp</result>
+		</action>
+	</package>
+</struts>

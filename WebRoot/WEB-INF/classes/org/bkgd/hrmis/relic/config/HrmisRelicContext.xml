@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      文物<import resource="classpath:org/bkgd/hrmis/relic/config/HrmisRelicContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 文物Dao实现 -->
+	<bean id="HRMIS_RELICDaoId"
+		class="org.bkgd.hrmis.relic.dao.HrmisRelicDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisRelic_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisRelic_object" class="org.bkgd.hrmis.relic.domain.HrmisRelic"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="HRMIS_RELICServerId"
+		class="org.bkgd.hrmis.relic.server.HrmisRelicManagerImpl">
+		<property name="hrmisRelicDao">
+			<ref bean="HRMIS_RELICDaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="HRMIS_RELICProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					org.bkgd.hrmis.relic.server.HrmisRelicManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="HRMIS_RELICServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYHRMIS_RELICTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYHRMIS_RELICTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

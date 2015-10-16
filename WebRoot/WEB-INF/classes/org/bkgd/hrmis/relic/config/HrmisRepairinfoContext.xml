@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      修复信息<import resource="classpath:org/bkgd/hrmis/relic/config/HrmisRepairinfoContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 修复信息Dao实现 -->
+	<bean id="HRMIS_REPAIRINFODaoId"
+		class="org.bkgd.hrmis.relic.dao.HrmisRepairinfoDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisRepairinfo_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisRepairinfo_object" class="org.bkgd.hrmis.relic.domain.HrmisRepairinfo"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 文物修复记录Dao实现 -->
+	<bean id="HRMIS_RELIC_REPAIRINFODaoId"
+		class="org.bkgd.hrmis.relic.dao.HrmisRelicRepairinfoDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisRelicRepairinfo_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisRelicRepairinfo_object" class="org.bkgd.hrmis.relic.domain.HrmisRelicRepairinfo"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="HRMIS_REPAIRINFOServerId"
+		class="org.bkgd.hrmis.relic.server.HrmisRepairinfoManagerImpl">
+		<property name="hrmisRepairinfoDao">
+			<ref bean="HRMIS_REPAIRINFODaoId" />
+		</property>
+		<property name="hrmisRelicRepairinfoDao">
+			<ref bean="HRMIS_RELIC_REPAIRINFODaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="HRMIS_REPAIRINFOProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					org.bkgd.hrmis.relic.server.HrmisRepairinfoManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="HRMIS_REPAIRINFOServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYHRMIS_REPAIRINFOTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYHRMIS_REPAIRINFOTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

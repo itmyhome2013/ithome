@@ -1,0 +1,20 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="20971520"/> <!-- 限制最大20M -->
+	<constant name="struts.custom.i18n.resources" value="org.macpro.alone.web.config.message">
+	</constant>
+	<constant name="struts.action.extension" value="do,htm"></constant>
+	<constant name="struts.locale" value="zh_CN"></constant>
+	<constant name="struts.i18n.reload" value="true"></constant>
+	<package name="person" extends="struts-default" namespace="/person">
+	</package>
+	<!-- 框架-->
+	<include file="com/farm/web/action/PlatFormWeb.xml"></include>
+	<!-- 权限系统-->
+	<include file="com/farm/console/web/conf/AllpopWeb.xml"></include>
+	<!-- 外部链接-->
+	<include file="conf/ResourceUrl.xml"></include>
+	<include file="org/bkgd/hrmis/base/web/conf/HrmisStoreWeb.xml"></include>
+</struts>

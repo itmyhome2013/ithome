@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      文物出入库信息<import resource="classpath:org/bkgd/hrmis/app/config/HrmisAppRecrelicContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 展出文物出入库信息Dao实现 -->
+	<bean id="HRMIS_APP_RECRELICExhibitInfoDaoId"
+		class="org.bkgd.hrmis.app.dao.HrmisAppRecrelicExhibitInfoDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisAppRecrelic_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisAppRecrelic_object" class="org.bkgd.hrmis.app.domain.HrmisAppRecrelic"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="HRMIS_APP_RECRELICExhibitInfoServerId"
+		class="org.bkgd.hrmis.app.server.HrmisAppRecrelicExhibitInfoManagerImpl">
+		<property name="hrmisAppRecrelicDao">
+			<ref bean="HRMIS_APP_RECRELICDaoId" />
+		</property>
+	
+		<property name="hrmisAppRelicfileDao">
+			<ref bean="HRMIS_APP_RELICFILEDaoId" />
+		</property>
+		<property name="hrmisAppExhibitfileDao">
+			<ref bean="HRMIS_APP_EXHIBITFILEDaoId" />
+		</property>
+		
+		<property name="hrmisExhibitinfoServer">
+			<ref bean="HRMIS_EXHIBITINFOServerId" />
+		</property>
+		<property name="hrmisRelicExhibitinfoDao">
+			<ref bean="HRMIS_RELIC_EXHIBITINFODaoId" />
+		</property>
+		<property name="hrmisExhibitinfoDao">
+			<ref bean="HRMIS_EXHIBITINFODaoId" />
+		</property>
+		<property name="hrmisStoreDao">
+			<ref bean="hrmis_storeDaoId" />
+		</property>
+		<property name="hrmisAppAuditManagerServer">
+			<ref bean="HRMIS_APP_AUDITServerId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="HRMIS_APP_RECRELICExhibitInfoProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					org.bkgd.hrmis.app.server.HrmisAppRecrelicExhibitInfoManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="HRMIS_APP_RECRELICExhibitInfoServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYHRMIS_APP_RECRELICTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYHRMIS_APP_RECRELICTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

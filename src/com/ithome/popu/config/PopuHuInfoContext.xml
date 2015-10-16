@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      房屋基础信息<import resource="classpath:org/bkgd/popu/config/PopuHuInfoContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 房屋基础信息Dao实现 -->
+	<bean id="POPU_HU_INFODaoId"
+		class="com.ithome.popu.dao.PopuHuInfoDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="PopuHuInfo_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="PopuHuInfo_object" class="com.ithome.popu.domain.PopuHuInfo"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="POPU_HU_INFOServerId"
+		class="com.ithome.popu.server.PopuHuInfoManagerImpl">
+		<property name="popuHuInfoDao">
+			<ref bean="POPU_HU_INFODaoId" />
+		</property>
+		<property name="dictionarytypeDao">
+			<ref bean="ALONE_DictionaryType_DAO" />
+		</property>
+		<!-- 
+		<property name="popuCitizenInfoDao">
+			<ref bean="POPU_CITIZEN_INFODaoId" />
+		</property>
+		 -->
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="POPU_HU_INFOProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.ithome.popu.server.PopuHuInfoManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="POPU_HU_INFOServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYPOPU_HU_INFOTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYPOPU_HU_INFOTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 随容器启动任务 需要实现ServletInitJobInter接口 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean id="startServerTasksId" class="com.farm.web.task.impl.TaskListImpl">
+		<property name="tasks">
+			<list>
+				<!-- 校验spring容器 -->
+				<bean class="com.farm.web.task.impl.ServerAppInit"></bean>
+				<!-- 初始化权限系统 -->
+				<bean class="com.farm.web.task.impl.ServerAUTHInit"></bean>
+				<!-- 加载licence -->
+				<bean class="com.farm.web.task.impl.ServerLicenceInit"></bean>
+				<!-- 启动调度任务 
+				<bean class="com.farm.quartz.adapter.StartSysTask"></bean>-->
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      来源信息<include file="org/bkgd/hrmis/relic/web/conf/HrmisRelicSourceWeb.xml"></include> -->
+<struts>
+	<!-- 来源信息 -->
+	<package name="HrmisRelicSource_Ajax_code" extends="json-default">
+		<!-- 来源信息查询 -->
+		<action name="HrmisRelicSourcequeryAll" method="queryall"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicSourceQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 来源信息增加 -->
+		<action name="HrmisRelicSourceaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicSourceQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 来源信息删除 -->
+		<action name="HrmisRelicSourcedeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicSourceQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 来源信息修改 -->
+		<action name="HrmisRelicSourceeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicSourceQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisRelicSource_Jsp_code" extends="struts-default">
+		<!-- 来源信息详细【修改、浏览】 -->
+		<action name="HrmisRelicSourceshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicSourceQuery">
+			<result>/hrmis/relic/pHrmisRelicSourceEntity.jsp</result>
+		</action>
+		<!-- html加载来源信息控制台 -->
+		<action name="HrmisRelicSource_ACTION_CONSOLE">
+			<result>/hrmis/relic/pHrmisRelicSourceLayout.jsp</result>
+		</action>
+		<!-- ajax加载来源信息选择页面 -->
+		<action name="HrmisRelicSource_ACTION_ALERT" >
+			<result>/hrmis/relic/pHrmisRelicSourceGrid.jsp</result>
+		</action>
+	</package>
+</struts>

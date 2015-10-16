@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      鉴定信息<include file="org/bkgd/hrmis/relic/web/conf/HrmisRelicAuthenticateWeb.xml"></include> -->
+<struts>
+	<!-- 鉴定信息 -->
+	<package name="HrmisRelicAuthenticate_Ajax_code" extends="json-default">
+		<!-- 鉴定信息查询 -->
+		<action name="HrmisRelicAuthenticatequeryAll" method="queryall"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicAuthenticateQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 鉴定信息增加 -->
+		<action name="HrmisRelicAuthenticateaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicAuthenticateQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 鉴定信息删除 -->
+		<action name="HrmisRelicAuthenticatedeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicAuthenticateQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 鉴定信息修改 -->
+		<action name="HrmisRelicAuthenticateeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicAuthenticateQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisRelicAuthenticate_Jsp_code" extends="struts-default">
+		<!-- 鉴定信息详细【修改、浏览】 -->
+		<action name="HrmisRelicAuthenticateshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisRelicAuthenticateQuery">
+			<result>/hrmis/relic/pHrmisRelicAuthenticateEntity.jsp</result>
+		</action>
+		<!-- html加载鉴定信息控制台 -->
+		<action name="HrmisRelicAuthenticate_ACTION_CONSOLE">
+			<result>/hrmis/relic/pHrmisRelicAuthenticateLayout.jsp</result>
+		</action>
+		<!-- ajax加载鉴定信息选择页面 -->
+		<action name="HrmisRelicAuthenticate_ACTION_ALERT" >
+			<result>/hrmis/relic/pHrmisRelicAuthenticateGrid.jsp</result>
+		</action>
+	</package>
+</struts>

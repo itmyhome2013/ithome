@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<property name="hibernate.jdbc.batch_size">20</property>
+	<property name="show_sql">true</property>
+	<!-- alone -->
+	<property name="dialect">
+		org.hibernate.dialect.Oracle9Dialect
+	</property>
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneAction.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneApplog.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneDictionaryEntity.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneDictionaryType.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneMenu.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneMenuRolegroup.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneOrganization.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneOrganizationUser.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneParameter.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneRolegroup.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneUser.hbm.xml" />
+	<mapping
+		resource="com/farm/console/prisist/domain/AloneUserRolegroup.hbm.xml" />
+
+</session-factory>
+</hibernate-configuration>

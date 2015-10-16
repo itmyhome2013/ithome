@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      ${JSP_Messager_Title}<include file="${_N_Web_T_xml_src}"></include> -->
+<struts>
+	<!-- ${JSP_Messager_Title} -->
+	<package name="${domain}_Ajax_code" extends="json-default">
+		<!-- ${JSP_Messager_Title}查询 -->
+		<action name="${url_queryAll}" method="queryall"
+			class="${Action_N_Query_T_java_pak}">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- ${JSP_Messager_Title}增加 -->
+		<action name="${url_addCommit}" method="addSubmit"
+			class="${Action_N_Query_T_java_pak}">
+			<result type="json"></result>
+		</action>
+		<!-- ${JSP_Messager_Title}删除 -->
+		<action name="${url_delete}" method="delSubmit"
+			class="${Action_N_Query_T_java_pak}">
+			<result type="json"></result>
+		</action>
+		<!-- ${JSP_Messager_Title}修改 -->
+		<action name="${url_editCommit}" method="editSubmit"
+			class="${Action_N_Query_T_java_pak}">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="${domain}_Jsp_code" extends="struts-default">
+		<!-- ${JSP_Messager_Title}详细【修改、浏览】 -->
+		<action name="${url_show}" method="view"
+			class="${Action_N_Query_T_java_pak}">
+			<result>/${p_N_Entity_T_jsp_src}</result>
+		</action>
+		<!-- html加载${JSP_Messager_Title}控制台 -->
+		<action name="${domain}_ACTION_CONSOLE">
+			<result>/${p_N_Layout_T_jsp_src}</result>
+		</action>
+		<!-- ajax加载${JSP_Messager_Title}选择页面 -->
+		<action name="${domain}_ACTION_ALERT" >
+			<result>/${p_N_Grid_T_jsp_src}</result>
+		</action>
+	</package>
+</struts>

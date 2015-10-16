@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      清点任务<import resource="classpath:org/bkgd/hrmis/app/config/HrmisAppCheckContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 清点任务Dao实现 -->
+	<bean id="HRMIS_APP_CHECKDaoId"
+		class="org.bkgd.hrmis.app.dao.HrmisAppCheckDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisAppCheck_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisAppCheck_object" class="org.bkgd.hrmis.app.domain.HrmisAppCheck"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 文物清点信息Dao实现 -->
+	<bean id="HRMIS_APP_CHECKRELICDaoId"
+		class="org.bkgd.hrmis.app.dao.HrmisAppCheckrelicDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisAppCheckrelic_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisAppCheckrelic_object" class="org.bkgd.hrmis.app.domain.HrmisAppCheckrelic"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 清点库房Dao实现 -->
+	<bean id="HRMIS_APP_RECHECKSTOREDaoId"
+		class="org.bkgd.hrmis.app.dao.HrmisAppRecheckstoreDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="HrmisAppRecheckstore_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="HrmisAppRecheckstore_object" class="org.bkgd.hrmis.app.domain.HrmisAppRecheckstore"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="HRMIS_APP_CHECKServerId"
+		class="org.bkgd.hrmis.app.server.HrmisAppCheckManagerImpl">
+		<property name="hrmisAppCheckDao">
+			<ref bean="HRMIS_APP_CHECKDaoId" />
+		</property>
+		<property name="hrmisAppCheckrelicDao">
+			<ref bean="HRMIS_APP_CHECKRELICDaoId" />
+		</property>
+		<property name="hrmisAppRecheckstoreDao">
+			<ref bean="HRMIS_APP_RECHECKSTOREDaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="HRMIS_APP_CHECKProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					org.bkgd.hrmis.app.server.HrmisAppCheckManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="HRMIS_APP_CHECKServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYHRMIS_APP_CHECKTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYHRMIS_APP_CHECKTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

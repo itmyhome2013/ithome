@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- Dao实现 -->
+	<bean id="ALONE_Menu_DAO"
+		class="com.farm.console.prisist.dao.MenuDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="ALONE_Menu_SERVER"
+		class="com.farm.console.server.contain.MenuManagerImpl">
+		<property name="menuDao">
+			<ref bean="ALONE_Menu_DAO" />
+		</property>
+		<property name="menuRoleDao">
+			<ref bean="ALONE_MenuRolegroup_DAO" />
+		</property>
+		<property name="actionManager">
+			<ref bean="ALONE_Action_DAO_PROXY" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="ALONE_Menu_DAO_PROXY"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.console.server.contain.MenuManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="ALONE_Menu_SERVER" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="MenuTransactionAttributeSource" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="MenuTransactionAttributeSource"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

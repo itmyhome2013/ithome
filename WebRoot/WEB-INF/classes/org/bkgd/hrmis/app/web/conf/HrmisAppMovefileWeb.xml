@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      移动照片资料<include file="org/bkgd/hrmis/app/web/conf/HrmisAppMovefileWeb.xml"></include> -->
+<struts>
+	<!-- 移动照片资料 -->
+	<package name="HrmisAppMovefile_Ajax_code" extends="json-default">
+		<!-- 移动照片资料查询 -->
+		<action name="HrmisAppMovefilequeryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppMovefileQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 移动照片资料增加 -->
+		<action name="HrmisAppMovefileaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppMovefileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 移动照片资料删除 -->
+		<action name="HrmisAppMovefiledeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppMovefileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 移动照片资料修改 -->
+		<action name="HrmisAppMovefileeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppMovefileQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppMovefile_Jsp_code" extends="struts-default">
+		<!-- 移动照片资料详细【修改、浏览】 -->
+		<action name="HrmisAppMovefileshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppMovefileQuery">
+			<result>/hrmis/app/pHrmisAppMovefileEntity.jsp</result>
+		</action>
+		<!-- html加载移动照片资料控制台 -->
+		<action name="HrmisAppMovefile_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppMovefileLayout.jsp</result>
+		</action>
+		<!-- ajax加载移动照片资料选择页面 -->
+		<action name="HrmisAppMovefile_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppMovefileGrid.jsp</result>
+		</action>
+	</package>
+</struts>

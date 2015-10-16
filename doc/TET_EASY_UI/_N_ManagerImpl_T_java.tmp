@@ -1,0 +1,67 @@
+package ${pkg};
+
+import com.farm.console.prisist.domain.AloneUser;
+import com.farm.core.time.TimeTool;
+import org.apache.log4j.Logger;
+import ${_N_DaoInter_T_java_pak};
+import ${pkgDomain}.${domain};
+import ${_N_ManagerInter_T_java_pak};
+import com.farm.core.sql.query.DataQuery;
+ /**
+ * ${JSP_Messager_Title}类功能说明
+ *
+ * @author 作者:自动生成
+ * @version 日期(用日期代替版本号)+版本备注
+ */ 
+public class ${_N_ManagerImpl_T_java_name} implements ${_N_ManagerInter_T_java_name}{
+	private ${_N_DaoInter_T_java_name}  ${var_serverUserDao};
+	private static final Logger log = Logger.getLogger(${_N_ManagerImpl_T_java_name}.class);
+	public ${domain} insert${domain}Entity(${domain} entity,AloneUser user) {
+		//entity.setCuser(user.getId());
+		//entity.setCtime(TimeTool.getTimeDate14());
+		//entity.setCusername(user.getName());
+		//entity.setEuser(user.getId()); 
+		//entity.setEusername(user.getName());
+		//entity.setEtime(TimeTool.getTimeDate14());
+		//entity.setPstate("1");
+		return ${var_serverUserDao}.insertEntity(entity);
+	}
+	public ${domain} edit${domain}Entity(${domain} entity,AloneUser user) {
+		${domain} entity2 = ${var_serverUserDao}.getEntity(entity.getId());
+		//entity2.setEuser(user.getId());
+		//entity2.setEusername(user.getName());
+		//entity2.setEtime(TimeTool.getTimeDate14()); 
+		<#list fields as item>
+       <#if item[5]=='true'>
+   		entity2.set${item[10]}(entity.get${item[10]}());
+       </#if>
+		</#list>
+		${var_serverUserDao}.editEntity(entity2);
+		return entity2;
+	}
+	public void delete${domain}Entity(String entity,AloneUser user) {
+		${var_serverUserDao}.deleteEntity(${var_serverUserDao}.getEntity(entity));
+	}
+	public ${domain} get${domain}Entity(String id) {
+		if (id == null){return null;}
+		return ${var_serverUserDao}.getEntity(id);
+	}
+	@Override
+	public DataQuery create${domain}SimpleQuery(DataQuery query) {
+		DataQuery dbQuery = DataQuery
+				.init(
+						query,
+						"${table}",
+						"id<#list fields as item><#if item[8]=='true'>,${item[1]}</#if></#list>");
+		return dbQuery;
+	}
+	//----------------------------------------------------------------------------------
+	public ${_N_DaoInter_T_java_name} get${var_serverUserDao}() {
+		return ${var_serverUserDao};
+	}
+
+	public void set${var_serverUserDao}(${_N_DaoInter_T_java_name} dao) {
+		this.${var_serverUserDao} = dao;
+	}
+
+}

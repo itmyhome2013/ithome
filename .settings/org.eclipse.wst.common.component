@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="hrmis">
+        <wb-resource deploy-path="/" source-path="/WebRoot"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/HRMIS_BASE"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/HRMIS_RELIC"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/HRMIS_APP"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/BS-config"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WEB-local"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WEB-core"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WEB-console"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/PLUGIN-report"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/PLUGIN-document"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/PLUGIN-dbconsole"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/BS-core"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/BKGD-CLIENT"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/scr"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/hrmis/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/ithome"/>
+    </wb-module>
+</project-modules>

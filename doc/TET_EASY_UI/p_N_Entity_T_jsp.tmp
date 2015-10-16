@@ -1,0 +1,85 @@
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="/WEB-TAG/platForm.tld" prefix="PF"%>
+<!--${JSP_Messager_Title}-->
+<div class="easyui-layout" data-options="fit:true">
+	<div class="TableTitle" data-options="region:'north',border:false">
+		<c:if test="${'$'}{pageset.pageType==1}">新增${'$'}{JSP_Messager_Title}记录</c:if>
+		<c:if test="${'$'}{pageset.pageType==2}">修改${'$'}{JSP_Messager_Title}记录</c:if>
+		<c:if test="${'$'}{pageset.pageType==0}">浏览${'$'}{JSP_Messager_Title}记录</c:if>
+	</div>
+	<div data-options="region:'center'">
+		<form id="dom_form${domain?lower_case}">
+			<input type="hidden" name="entity.id" value="${'$'}{entity.id}">
+			<table class="editTable">
+			<#list fields as item>
+			<#if item[5]=='true'>
+				<tr>
+					<td class="title">
+						${item[0]}:
+					</td>
+					<td colspan="3">
+						<#if item[4]=='text'||item[4]=='TEXT'>
+							<input type="text" style="width: 360px;" class="easyui-validatebox" data-options="<#if item[3]=='true'>required:true</#if><#if item[3]!='true'>required:false</#if>,validType:'<#if item[2]!=''>,maxLength[${item[2]?number/2}]</#if>'"
+							id="entity_${item[1]?lower_case}" name="entity.${item[1]?lower_case}" value="${'$'}{entity.${item[1]?lower_case}}">
+							
+						</#if>
+						<#if item[4]=='textarea'||item[4]=='TEXTAREA'>
+							<textarea rows="3" style="width: 360px;" class="easyui-validatebox" data-options="<#if item[3]=='true'>required:true</#if><#if item[3]!='true'>required:false</#if>,validType:'<#if item[2]!=''>,maxLength[${item[2]?number/2}]</#if>'"
+							id="entity_${item[1]?lower_case}" name="entity.${item[1]?lower_case}">${'$'}{entity.${item[1]?lower_case}}</textarea>
+						</#if>
+						<#if item[4]=='select'||item[4]=='SELECT'>
+							<select name="entity.${item[1]?lower_case}" id="entity_${item[1]?lower_case}"  val="${'$'}{entity.${item[1]?lower_case}}"><option value="0">NONE</option></select>
+						</#if>
+					</td>
+				</tr>
+			</#if>
+			</#list>
+			<c:if test="${'$'}{pageset.pageType==1}"><!--新增-->
+			</c:if>
+			<c:if test="${'$'}{pageset.pageType==2}"><!--修改-->
+			</c:if>
+			<c:if test="${'$'}{pageset.pageType==0}"><!--浏览-->
+			</c:if>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'south',border:false">
+		<div class="div_button" style="text-align: center; padding: 4px;">
+			<c:if test="${'$'}{pageset.pageType==1}">
+			<a id="dom_add_entity${domain?lower_case}" href="javascript:void(0)"  iconCls="icon-save" class="easyui-linkbutton">增加</a>
+			</c:if>
+			<c:if test="${'$'}{pageset.pageType==2}">
+			<a id="dom_edit_entity${domain?lower_case}" href="javascript:void(0)" iconCls="icon-save" class="easyui-linkbutton">修改</a>
+			</c:if>
+			<a id="dom_cancle_form${domain?lower_case}" href="javascript:void(0)" iconCls="icon-cancel" class="easyui-linkbutton"   style="color: #000000;">取消</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var submitAddAction${domain?lower_case} = 'admin/${url_addCommit}.do';
+	var submitEditAction${domain?lower_case} = 'admin/${url_editCommit}.do';
+	var currentPageType${domain?lower_case} = '${'$'}{pageset.pageType}';
+	var submitForm${domain?lower_case};
+	$(function() {
+		//表单组件对象
+		submitForm${domain?lower_case} = $('#dom_form${domain?lower_case}').SubmitForm( {
+			pageType : currentPageType${domain?lower_case},
+			grid : grid${domain?lower_case},
+			currentWindowId : 'win${domain?lower_case}'
+		});
+		//关闭窗口
+		$('#dom_cancle_form${domain?lower_case}').bind('click', function() {
+			$('#win${domain?lower_case}').window('close');
+		});
+		//提交新增数据
+		$('#dom_add_entity${domain?lower_case}').bind('click', function() {
+			submitForm${domain?lower_case}.postSubmit(submitAddAction${domain?lower_case});
+		});
+		//提交修改数据
+		$('#dom_edit_entity${domain?lower_case}').bind('click', function() {
+			submitForm${domain?lower_case}.postSubmit(submitEditAction${domain?lower_case});
+		});
+	});
+	//-->
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      出入库附件<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRelicfileWeb.xml"></include> -->
+<struts>
+	<!-- 出入库附件 -->
+	<package name="HrmisAppRelicfile_Ajax_code" extends="json-default">
+		<!-- 出入库附件查询 -->
+		<action name="HrmisAppRelicfilequeryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 出入库附件增加 -->
+		<action name="HrmisAppRelicfileaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 出入库附件删除 -->
+		<action name="HrmisAppRelicfiledeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 出入库附件修改 -->
+		<action name="HrmisAppRelicfileeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppRelicfile_Jsp_code" extends="struts-default">
+		<!-- 出入库附件详细【修改、浏览】 -->
+		<action name="HrmisAppRelicfileshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileQuery">
+			<result>/hrmis/app/pHrmisAppRelicfileEntity.jsp</result>
+		</action>
+		<!-- html加载出入库附件控制台 -->
+		<action name="HrmisAppRelicfile_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppRelicfileLayout.jsp</result>
+		</action>
+		<!-- ajax加载出入库附件选择页面 -->
+		<action name="HrmisAppRelicfile_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppRelicfileGrid.jsp</result>
+		</action>
+	</package>
+</struts>

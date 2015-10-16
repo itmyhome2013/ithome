@@ -1,0 +1,41 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      文物出入库信息<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRecrelicWeb.xml"></include> -->
+<struts>
+	<!-- 文物展出出入库 -->
+	<package name="HrmisAppRecrelicExhibitinfo_Ajax_code" extends="json-default">
+		
+		<!-- 出库照片资料查询 -->
+		<action name="HrmisAppRecrelicExhibitInfoFile" method="moveInfoFileQueryAll"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileExhibitinfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 附件上传 -->
+		<action name="HrmisAppRelicExhibitInfoFileUpload" method="fileUpload"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileExhibitinfoQuery">
+			<result type="json"></result>
+			<result name="input">/PLUGIN/document/uploaderror.jsp</result>
+		</action>
+		<!-- 出入库附件增加 -->
+		<action name="HrmisAppRelicExhibitInfoFileAddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileExhibitinfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 出入库附件删除 -->
+		<action name="HrmisAppRelicExhibitInfoFiledeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileExhibitinfoQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppRecrelicExhibitinfo_Jsp_code" extends="struts-default">
+		
+		<!-- 出库照片资料 -->
+		<action name="HrmisAppOutExhibitInfo" method="forSend"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileExhibitinfoQuery">
+			<result>/hrmis/app/exhibitinfo/pHrmisExhibitInfoOutLayout.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      展出照片资料<include file="org/bkgd/hrmis/app/web/conf/HrmisAppExhibitfileWeb.xml"></include> -->
+<struts>
+	<!-- 展出照片资料 -->
+	<package name="HrmisAppExhibitfile_Ajax_code" extends="json-default">
+		<!-- 展出照片资料查询 -->
+		<action name="HrmisAppExhibitfilequeryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppExhibitfileQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 展出照片资料增加 -->
+		<action name="HrmisAppExhibitfileaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppExhibitfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 展出照片资料删除 -->
+		<action name="HrmisAppExhibitfiledeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppExhibitfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 展出照片资料修改 -->
+		<action name="HrmisAppExhibitfileeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppExhibitfileQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppExhibitfile_Jsp_code" extends="struts-default">
+		<!-- 展出照片资料详细【修改、浏览】 -->
+		<action name="HrmisAppExhibitfileshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppExhibitfileQuery">
+			<result>/hrmis/app/pHrmisAppExhibitfileEntity.jsp</result>
+		</action>
+		<!-- html加载展出照片资料控制台 -->
+		<action name="HrmisAppExhibitfile_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppExhibitfileLayout.jsp</result>
+		</action>
+		<!-- ajax加载展出照片资料选择页面 -->
+		<action name="HrmisAppExhibitfile_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppExhibitfileGrid.jsp</result>
+		</action>
+	</package>
+</struts>

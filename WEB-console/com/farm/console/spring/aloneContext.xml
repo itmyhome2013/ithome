@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 组件 -->
+	<import resource="classpath:com/farm/console/spring/common_Context.xml"></import>
+	<!-- 持久+事务 -->
+	<import resource="classpath:com/farm/console/spring/user_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/parameter_Context.xml"></import>
+	<import resource="classpath:com/farm/console/spring/Menu_Context.xml"></import>
+	<import resource="classpath:com/farm/console/spring/Action_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/Organization_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/Rolegroup_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/DictionaryEntity _Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/DictionaryType_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/MenuRolegroup_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/OrganizationUser_Context.xml"></import>
+	<import
+		resource="classpath:com/farm/console/spring/AloneApplogContext.xml"></import>
+</beans>

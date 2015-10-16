@@ -1,0 +1,67 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 权限组 -->
+	<package name="AloneRolegroup_Ajax_code" extends="json-default">
+		<!-- 权限资源查询 -->
+		<action name="alonerolegroupqueryAll" method="queryall"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源增加 -->
+		<action name="alonerolegroupaddCommit" method="addSubmit"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源删除 -->
+		<action name="alonerolegroupdeleteCommit" method="delSubmit"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源修改 -->
+		<action name="alonerolegroupeditCommit" method="editSubmit"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 设置角色权限树 -->
+		<action name="ALONEROLEGROUP_SYSBASE_SETTREE" method="roleGroupSetTree"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 设置用户的权限角色 -->
+		<action name="ALONE_SETUSER_ROLEGROUP_COMMIT" method="userRuleGroupsCommit"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 一次加载全部树URL并标注角色选中状态 -->
+		<action name="ALONEMENU_RULEGROUP_TREENODE" method="loadRuleTreeNode"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result type="json">
+				<param name="root">treeNodes</param>
+			</result>
+		</action>
+	</package>
+	<package name="AloneRolegroup_Jsp_code" extends="struts-default">
+		<!-- 权限资源详细【修改、浏览】 -->
+		<action name="alonerolegroupshow" method="view"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result>/PLUGIN/pop/pAloneRolegroupEntity.jsp</result>
+		</action>
+		<!-- 加载资源权限控制台 -->
+		<action name="AloneRolegroup_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result>/PLUGIN/pop/pAloneRolegroupLayout.jsp</result>
+		</action>
+		<!-- 初始化角色权限树 -->
+		<action name="ALONEROLEGROUP_SYSBASE_INITTREE" method="initRoleGruopTreeNode"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result>/PLUGIN/pop/RolegroupTreeWindow.jsp</result>
+		</action>
+		<!-- 设置角色菜单 -->
+		<action name="ALONEROLEGROUP_SET_POPTREE" method="forSend"
+			class="com.farm.console.web.action.ActionalonerolegroupQuery">
+			<result>/PLUGIN/pop/pAloneRolegroupSerMenu.jsp</result>
+		</action>
+	</package>
+</struts>

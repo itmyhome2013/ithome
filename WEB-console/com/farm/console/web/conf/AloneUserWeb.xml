@@ -1,0 +1,154 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 系统用户 -->
+	<package name="AloneUser_Ajax_code" extends="json-default">
+		<!-- 用户查询 -->
+		<action name="AloneUserqueryAll" method="queryall"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 管理员查询 -->
+		<action name="AloneAdminqueryAll" method="adminQueryall"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 查找全部角色并标志用户拥有状态-->
+		<action name="AlonequeryAllRulegroupForUser" method="ruleGroupQueryallForUser"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 选择用户查询 -->
+		<action name="AloneUserChooseQueryAll" method="adminChooseall"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 通过组织机构选择人员_查询 -->
+		<action name="AloneOrgChooseQueryAll" method="orgChooseall"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 通过组织机构查看人员_查询 -->
+		<action name="AloneOrgQueryAll" method="orgQueryall"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 用户增加 -->
+		<action name="AloneUseraddCommit" method="addSubmit"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 设置用户为系统管理员 -->
+		<action name="AloneUserSetAdmin" method="SubmitSetAdmin"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 删除系统管理员 -->
+		<action name="AloneUserRemoveAdmin" method="SubmitRemoveAdmin"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 用户删除 -->
+		<action name="AloneUserdeleteCommit" method="delSubmit"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 用户密码重置 -->
+		<action name="AloneUserResetPassWordCommit" method="resetPassWord"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 用户修改 -->
+		<action name="AloneUsereditCommit" method="editSubmit"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 用户申请账号 -->
+		<action name="nlregisterUser" method="register"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 查找是否是主要组织机构信息 -->
+		<action name="AloneUser_findIsMainOrg" method="findIsMainOrg"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 为用户批量设置组织机构 -->
+		<action name="AloneAllUser_SubmitSetOrg" method="SubmitAllSetOrg"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 设置主要组织机构 -->
+		<action name="AloneUser_SubmitSetMainOrg" method="SubmitSetMainOrg"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 设置非主要组织机构 -->
+		<action name="AloneUser_SubmitSetUnMainOrg" method="SubmitSetUnMainOrg"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 删除组织机构和人员的关系 -->
+		<action name="AloneUser_deleteOrg" method="deleteOrg"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 修改当前用户密码 -->
+		<action name="AloneUser_PassWordUpdata" method="updataPassWordCommit"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="AloneUser_Jsp_code" extends="struts-default">
+		<!-- 用户详细【修改、浏览】 -->
+		<action name="AloneUsershow" method="view"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/PLUGIN/pop/pAloneUserEntity.jsp</result>
+		</action>
+		<!-- 加载用户控制台 -->
+		<action name="AloneUser_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/PLUGIN/pop/pAloneUserLayout.jsp</result>
+		</action>
+		<!-- 加载用户查看控制台 -->
+		<action name="AloneUser_View_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/PLUGIN/pop/pAloneUserViewLayout.jsp</result>
+		</action>
+		<!-- 加载用户配置角色的控制台 -->
+		<action name="AloneUser_rule_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/PLUGIN/pop/pAloneUserRoleSetUp.jsp</result>
+		</action>
+		<!-- 加载用户配置组织机构的控制台 -->
+		<action name="AloneUser_orgMore_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/PLUGIN/pop/pAloneUserOrgSetUp.jsp</result>
+		</action>
+		<!-- 加载系统管理员控制台 -->
+		<action name="AloneAdmin_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/UI-BASE/PLAT/pAloneAdminLayout.jsp</result>
+		</action>
+		<!-- 修改当前用户密码 -->
+		<action name="AloneUser_UpdataPassWord" method="forSend"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/UI-BASE/PLAT/password.jsp</result>
+		</action>
+		<!-- 修改当前用户密码 -->
+		<action name="AloneUser_PassWordUpdataCommit" method="updataPassWordCommit"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/UI-BASE/PLAT/password.jsp</result>
+		</action>
+		<!-- 显示当前在线用户 -->
+		<action name="AloneUser_showOnlineUser" method="findOnlineUser"
+			class="com.farm.console.web.action.ActionAloneUserQuery">
+			<result>/PLUGIN/pop/pAloneUserOnline.jsp</result>
+		</action>
+		<!-- 条件选择用户页面 -->
+		<action name="AloneUser_ACTION_ALERT" >
+			<result>/PLUGIN/pop/pAloneUserGrid.jsp</result>
+		</action>
+	</package>
+</struts>

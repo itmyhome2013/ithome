@@ -1,0 +1,86 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      文物出入库信息<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRecrelicWeb.xml"></include>
+-->
+<struts>
+	<!-- 展出文物出入库信息 -->
+	<package name="HrmisAppRecrelicExhibitInfo_Ajax_code" extends="json-default">
+		<!-- 展出文物出入库信息查询 -->
+		<action name="HrmisAppRecrelicExhibitInfoqueryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 文物出入库信息删除 -->
+		<action name="HrmisAppRecrelicExhibitInfodeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 展出文物出入库信息增加 -->
+		<action name="HrmisAppRecrelicExhibitInfoaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文物查询 -->
+		<action name="HrmisAppRecrelicExhibitinfoRelicqueryAll" method="moveInfoRelicQueryAll"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 选择文物 -->
+		<action name="HrmisAppRecrelicExhibitInfoSubmitRelic" method="submitRelic"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 删除所选文物 -->
+		<action name="HrmisAppRecrelicExhibitInfodeleteRelicCommit" method="delRelic"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 查询展出出入库所选文物  -->
+		<action name="HrmisAppRecrelicExhibitInfoChooseRelic" method="chooseRelicQueryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+	</package>
+	<package name="HrmisAppRecrelicExhibitInfo_Jsp_code" extends="struts-default">
+	
+		<!-- html加载文物出入库信息控制台 -->
+		<action name="HrmisAppRecrelicExhibitInfo_ACTION_CONSOLE">
+			<result>/hrmis/app/exhibitinfo/pHrmisExhibitInfoLayout.jsp</result>
+		</action>
+		<!-- 文物出入库信息详细【修改、浏览】 -->
+		<action name="HrmisAppRecrelicExhibitInfoshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result>/hrmis/app/exhibitinfo/pHrmisExhibitInfoEntity.jsp</result>
+		</action>
+		<!-- 添加文物 -->
+		<action name="HrmisAppRecrelicExhibitInfoAddRelic" method="forSend"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result>/hrmis/app/exhibitinfo/pHrmisExhibitInfoAddRelicLayout.jsp</result>
+		</action>
+		<!-- 查看图片 -->
+		<action name="HrmisAppRecrelicExhibitInfoImgView" method="forSend"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result>/hrmis/app/imgView.jsp</result>
+		</action>
+		<!-- 导出  -->
+		<action name="HrmisRelicExhibitInfoReport" method="report"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecrelicExhibitInfoQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="recrelicExhibitInfo.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+</struts>

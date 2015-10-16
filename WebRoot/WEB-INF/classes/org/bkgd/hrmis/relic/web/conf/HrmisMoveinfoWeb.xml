@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      移动信息<include file="org/bkgd/hrmis/relic/web/conf/HrmisMoveinfoWeb.xml"></include> -->
+<struts>
+	<!-- 移动信息 -->
+	<package name="HrmisMoveinfo_Ajax_code" extends="json-default">
+		<!-- 移动信息查询 -->
+		<action name="HrmisMoveinfoqueryAll" method="queryall"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisMoveinfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 移动信息增加 -->
+		<action name="HrmisMoveinfoaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisMoveinfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 移动信息删除 -->
+		<action name="HrmisMoveinfodeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisMoveinfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 移动信息修改 -->
+		<action name="HrmisMoveinfoeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisMoveinfoQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisMoveinfo_Jsp_code" extends="struts-default">
+		<!-- 移动信息详细【修改、浏览】 -->
+		<action name="HrmisMoveinfoshow" method="view"
+			class="org.bkgd.hrmis.relic.web.action.ActionHrmisMoveinfoQuery">
+			<result>/hrmis/relic/pHrmisMoveinfoEntity.jsp</result>
+		</action>
+		<!-- html加载移动信息控制台 -->
+		<action name="HrmisMoveinfo_ACTION_CONSOLE">
+			<result>/hrmis/relic/pHrmisMoveinfoLayout.jsp</result>
+		</action>
+		<!-- ajax加载移动信息选择页面 -->
+		<action name="HrmisMoveinfo_ACTION_ALERT" >
+			<result>/hrmis/relic/pHrmisMoveinfoGrid.jsp</result>
+		</action>
+	</package>
+</struts>

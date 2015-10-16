@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      库房管理<include file="org/bkgd/hrmis/base/web/conf/HrmisStoreWeb.xml"></include> -->
+<struts>
+	<!-- 库房管理 -->
+	<package name="HrmisStore_Ajax_code" extends="json-default">
+		<!-- 库房管理查询 -->
+		<action name="HrmisStorequeryAll" method="queryall"
+			class="org.bkgd.hrmis.base.web.action.ActionHrmisStoreQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 库房管理增加 -->
+		<action name="HrmisStoreaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.base.web.action.ActionHrmisStoreQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 库房管理删除 -->
+		<action name="HrmisStoredeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.base.web.action.ActionHrmisStoreQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 库房管理修改 -->
+		<action name="HrmisStoreeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.base.web.action.ActionHrmisStoreQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisStore_Jsp_code" extends="struts-default">
+		<!-- 库房管理详细【修改、浏览】 -->
+		<action name="HrmisStoreshow" method="view"
+			class="org.bkgd.hrmis.base.web.action.ActionHrmisStoreQuery">
+			<result>/hrmis/base/pHrmisStoreEntity.jsp</result>
+		</action>
+		<!-- html加载库房管理控制台 -->
+		<action name="HrmisStore_ACTION_CONSOLE">
+			<result>/hrmis/base/pHrmisStoreLayout.jsp</result>
+		</action>
+		<!-- ajax加载库房管理选择页面 -->
+		<action name="HrmisStore_ACTION_ALERT" >
+			<result>/hrmis/base/pHrmisStoreGrid.jsp</result>
+		</action>
+	</package>
+</struts>

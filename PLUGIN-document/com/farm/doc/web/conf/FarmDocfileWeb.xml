@@ -1,0 +1,81 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      文件<include file="com/farm/doc/web/conf/FarmDocfileWeb.xml"></include> -->
+<struts>
+	<!-- 文件 -->
+	<package name="FarmDocfile_Ajax_code" extends="json-default">
+		<!-- 文件查询 -->
+		<action name="FarmDocfilequeryAll" method="queryall"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文件增加 -->
+		<action name="FarmDocfileaddCommit" method="addSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文件删除 -->
+		<action name="FarmDocfiledeleteCommit" method="delSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文件修改 -->
+		<action name="FarmDocfileeditCommit" method="editSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 附件上传 -->
+		<action name="FPFlashFileUpload" method="fileUpload"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+			<result name="input">/PLUGIN/document/uploaderror.jsp</result>
+		</action>
+		
+	</package>
+	<package name="FarmDocfile_Jsp_code" extends="struts-default">
+		<!-- 文件详细【修改、浏览】 -->
+		<action name="FarmDocfileshow" method="view"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result>/PLUGIN/document/pFarmDocfileEntity.jsp</result>
+		</action>
+		<!-- 文件上传 -->
+		<action name="FarmDocfileUploadShow" method="forSend"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result>/PLUGIN/document/pFarmDocfileEntity.jsp</result>
+		</action>
+		<!-- html加载文件控制台 -->
+		<action name="FarmDocfile_ACTION_CONSOLE">
+			<result>/PLUGIN/document/pFarmDocfileLayout.jsp</result>
+		</action>
+		<!-- ajax加载文件选择页面 -->
+		<action name="FarmDocfile_ACTION_ALERT" >
+			<result>/PLUGIN/document/pFarmDocfileGrid.jsp</result>
+		</action>
+		
+		<action name="readImageShow" class="com.farm.doc.web.action.ActionFarmDocfileQuery" method="forSend">
+			<result>/PLUGIN/document/pFarmDocfileView.jsp</result>
+		</action>
+		
+		<!-- 图片读取 -->    
+       <action name="readImage" class="com.farm.doc.web.action.ActionFarmDocfileQuery" method="readImg">   
+            <result type="stream">   
+                 <param name="contentType">application/octet-stream</param>    
+                 <param name="inputName">inputStream</param>    
+                 <param name="contentDisposition">attachment;filename=${fileName}</param>    
+                 <param name="bufferSize">4096</param>   
+            </result>   
+       </action>   
+		
+		<!-- 文件下载 -->    
+       <action name="downloadImage" class="com.farm.doc.web.action.ActionFarmDocfileQuery" method="download">   
+            <result type="stream">   
+                 <param name="contentType">application/octet-stream</param>    
+                 <param name="inputName">inputStream</param>    
+                 <param name="contentDisposition">attachment;filename=${fileName}</param>    
+                 <param name="bufferSize">4096</param>   
+            </result>   
+       </action> 
+	</package>
+</struts>

@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      清点任务<include file="org/bkgd/hrmis/app/web/conf/HrmisAppCheckWeb.xml"></include> -->
+<struts>
+	<!-- 清点任务 -->
+	<package name="HrmisAppCheck_Ajax_code" extends="json-default">
+		<!-- 清点任务查询 -->
+		<action name="HrmisAppCheckqueryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 清点任务增加 -->
+		<action name="HrmisAppCheckaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 清点任务删除 -->
+		<action name="HrmisAppCheckdeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 清点任务修改 -->
+		<action name="HrmisAppCheckeditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppCheck_Jsp_code" extends="struts-default">
+		<!-- 清点任务详细【修改、浏览】 -->
+		<action name="HrmisAppCheckshow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppCheckQuery">
+			<result>/hrmis/app/pHrmisAppCheckEntity.jsp</result>
+		</action>
+		<!-- html加载清点任务控制台 -->
+		<action name="HrmisAppCheck_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppCheckLayout.jsp</result>
+		</action>
+		<!-- ajax加载清点任务选择页面 -->
+		<action name="HrmisAppCheck_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppCheckGrid.jsp</result>
+		</action>
+	</package>
+</struts>

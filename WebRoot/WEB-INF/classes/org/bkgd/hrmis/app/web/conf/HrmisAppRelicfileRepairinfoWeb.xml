@@ -1,0 +1,41 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      文物出入库信息<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRecrelicWeb.xml"></include> -->
+<struts>
+	<!-- 文物修复出入库 -->
+	<package name="HrmisAppRecrelicRepairinfo_Ajax_code" extends="json-default">
+		
+		<!-- 出库照片资料查询 -->
+		<action name="HrmisAppRecrelicRepairInfoFile" method="moveInfoFileQueryAll"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileRepairinfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 附件上传 -->
+		<action name="HrmisAppRelicRepairInfoFileUpload" method="fileUpload"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileRepairinfoQuery">
+			<result type="json"></result>
+			<result name="input">/PLUGIN/document/uploaderror.jsp</result>
+		</action>
+		<!-- 出入库附件增加 -->
+		<action name="HrmisAppRelicRepairInfoFileAddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileRepairinfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 出入库附件删除 -->
+		<action name="HrmisAppRelicRepairInfoFiledeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileRepairinfoQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppRecrelicRepairinfo_Jsp_code" extends="struts-default">
+		
+		<!-- 出库照片资料 -->
+		<action name="HrmisAppOutRepairInfo" method="forSend"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRelicfileRepairinfoQuery">
+			<result>/hrmis/app/repairinfo/pHrmisRepairInfoOutLayout.jsp</result>
+		</action>
+	</package>
+</struts>

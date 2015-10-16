@@ -1,0 +1,56 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      人员出入库记录<include file="org/bkgd/hrmis/app/web/conf/HrmisAppRecperWeb.xml"></include> -->
+<struts>
+	<!-- 人员出入库记录 -->
+	<package name="HrmisAppRecper_Ajax_code" extends="json-default">
+		<!-- 人员出入库记录查询 -->
+		<action name="HrmisAppRecperqueryAll" method="queryall"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecperQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 人员出入库记录增加 -->
+		<action name="HrmisAppRecperaddCommit" method="addSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecperQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 人员出入库记录删除 -->
+		<action name="HrmisAppRecperdeleteCommit" method="delSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecperQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 人员出入库记录修改 -->
+		<action name="HrmisAppRecpereditCommit" method="editSubmit"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecperQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="HrmisAppRecper_Jsp_code" extends="struts-default">
+		<!-- 人员出入库记录详细【修改、浏览】 -->
+		<action name="HrmisAppRecpershow" method="view"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecperQuery">
+			<result>/hrmis/app/pHrmisAppRecperEntity.jsp</result>
+		</action>
+		<!-- html加载人员出入库记录控制台 -->
+		<action name="HrmisAppRecper_ACTION_CONSOLE">
+			<result>/hrmis/app/pHrmisAppRecperLayout.jsp</result>
+		</action>
+		<!-- ajax加载人员出入库记录选择页面 -->
+		<action name="HrmisAppRecper_ACTION_ALERT" >
+			<result>/hrmis/app/pHrmisAppRecperGrid.jsp</result>
+		</action>
+		<!-- 导出人员出入库记录 -->
+		<action name="exportExcelAppRecper" method="report"
+			class="org.bkgd.hrmis.app.web.action.ActionHrmisAppRecperQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="log.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+</struts>
