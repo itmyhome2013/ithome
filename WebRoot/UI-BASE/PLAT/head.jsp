@@ -10,7 +10,7 @@
 						${node.name}
 						</c:forEach> </b>
 		<span style="color: green; font-weight: bold;">${sessionScope.USEROBJ.name}</span>属于
-		<b>${sessionScope.USERORG.name}</b>
+		<b>${sessionScope.USERORG.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
 	</div>
 	<div style="padding-top: 40px; margin-left: 250px; float: left;">
 		<div style="float: left;">

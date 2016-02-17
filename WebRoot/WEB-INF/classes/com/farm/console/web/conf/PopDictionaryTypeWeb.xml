@@ -1,0 +1,62 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 数据字典 -->
+	<package name="popDictionaryTypeWebAjax" extends="json-default">
+		<!-- 数据字典查询 -->
+		<action name="ALONEDictionaryType_SYSBASE_QUERYALL" method="queryall"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result type="json"></result>
+		</action>
+		<!-- 数据字典增加 -->
+		<action name="ALONEDictionaryType_ADD_SUBMIT" method="addSubmit"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result type="json"></result>
+		</action>
+		<!-- 数据字典删除 -->
+		<action name="ALONEDictionaryType_DEL_SUBMIT" method="delSubmit"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result type="json"></result>
+		</action>
+		<!-- 数据字典修改 -->
+		<action name="ALONEDictionaryType_EDIT_SUBMIT" method="editSubmit"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result type="json"></result>
+		</action>
+		
+		<!-- id  treecode -->
+		<action name="ALONEDictionaryType_ByIdGetTreecode" method="byIdGetTreecode"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 加载数据字典_树状列表 -->
+		<action name="ALONEDictionary_TREENODE" method="loadTreeNode"  
+            class="com.farm.console.web.action.ActionPopDictionaryType">  
+            <result type="json">  
+                <param name="root">treeNodes</param>  
+            </result>  
+        </action>  
+		
+	</package>
+	<package name="popDictionaryTypeWebJsp" extends="struts-default">
+		<!-- 数据字典详细【修改、浏览】 -->
+		<action name="ALONEDictionaryType_VIEW_SUBMIT" method="view"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result>/PLUGIN/pop/pAloneDictionaryTypeEntity.jsp</result>
+		</action>
+		<!-- 数据字典详细(树结构)【修改、浏览】 -->
+		<action name="ALONEDictionaryType_VIEWTREE_SUBMIT" method="viewTree"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result>/PLUGIN/pop/pAloneDictionaryTypeTreeEntity.jsp</result>
+		</action>
+		
+		<!-- 加载数据字典控制台 -->
+		<action name="ALONEDictionaryType_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionPopDictionaryType">
+			<result name="sequence">/PLUGIN/pop/pAloneDictionaryTypeLayout.jsp</result>
+			<result name="tree">/PLUGIN/pop/pAloneDictionaryTypeTreeLayout.jsp</result>
+		</action>
+	</package>
+</struts>

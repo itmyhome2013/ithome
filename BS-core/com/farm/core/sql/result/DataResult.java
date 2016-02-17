@@ -199,6 +199,21 @@ public class DataResult {
 	}
 
 	/**
+	 * 对单个字段值进行替换
+	 * @param dictionary  数据字段
+	 * @param val  所替换值内容
+	 * @return
+	 */
+	public static String runDictionarySingle(Map<String, String> dictionary, String val){
+		for(Map.Entry<String, String> entry : dictionary.entrySet()){
+			if(entry.getKey().equals(val)){
+				return entry.getValue();
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * 对结果集合中某个字段值进行替换，用于数据字典的翻译
 	 * 
 	 * @param str

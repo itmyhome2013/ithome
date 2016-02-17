@@ -3,14 +3,18 @@
 import com.ithome.popu.domain.PopuHuInfo;
 import com.ithome.popu.server.PopuHuInfoManagerInter;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
 
 import com.farm.report.FarmReport;
 import com.farm.web.easyui.EasyUiUtils;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import com.farm.console.FarmManager;
 import com.farm.core.config.AppConfig;
@@ -22,6 +26,7 @@ import com.farm.core.sql.query.DBRule;
 import com.farm.core.sql.query.DBSort;
 import com.farm.core.sql.query.DataQuery;
 import com.farm.core.sql.result.DataResult;
+import com.farm.core.time.TimeTool;
 import com.farm.core.web.ParameterUtils;
 import com.farm.web.action.WebSupport;
 import com.farm.web.spring.BeanFactory;
@@ -34,6 +39,7 @@ import com.farm.web.spring.BeanFactory;
  */
 public class ActionPopuHuInfoQuery extends WebSupport {
 	private Map<String, Object> jsonResult;// 结果集合
+	private List<Map<String,Object>> resultList; //导出结果集
 	private DataQuery query;// 条件查询
 	private PopuHuInfo entity;// 实体封装
 	private PageSet pageset;// 请求状态
@@ -56,6 +62,7 @@ public class ActionPopuHuInfoQuery extends WebSupport {
 			query = EasyUiUtils.formatGridQuery(getRequest(), query);
 			
 			DataResult result = aloneIMP.createPopuHuInfoSimpleQuery(query,getCurrentUserOrg()).search();
+			resultList = result.getResultList();
 			result.runDictionary(FarmManager.instance().findDicTitleForIndex("HUQUALE"), "HUQUALE"); //户口性质
 			result.runDictionary(FarmManager.instance().findDicTitleForIndex("HUTYPE"), "HUTYPE"); //户口类别
 			result.runDictionary(FarmManager.instance().findDicTitleForIndex("HUSTATE"), "HUSTATE"); //户籍状态
@@ -238,8 +245,23 @@ public class ActionPopuHuInfoQuery extends WebSupport {
 			query.setPagesize(Integer.parseInt(AppConfig.getString("config.export.number")));
 			queryall();
 			// ------------------------开始报表
-			inputStream = FarmReport.newInstance("huInfo.xls").addParameter(
-					"result", jsonResult.get("rows")).generate();
+			//inputStream = FarmReport.newInstance("huInfo.xls").addParameter("result", jsonResult.get("rows")).generate();
+			String path = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/")
+						+ "/WEB-INF/classes/report/resource/户导出信息_"+TimeTool.getTimeDate14()+".xls";
+			//使用LinkedHashMap 保证顺序输出
+			Map<String,Integer> headName = new LinkedHashMap<String,Integer>();
+			headName.put("户主姓名", null);
+			headName.put("户地址", null);
+			headName.put("户口性质", null);
+			headName.put("户主身份证", null);
+			List<String> contentName = new ArrayList<String>();
+			contentName.add("HUNAME");
+			contentName.add("LIVESADDRESS");
+			contentName.add("HUQUALE");
+			contentName.add("HUIDENTITY");
+			
+			FarmReport.generateExcel("户信息报表", "户导出信息", path, headName,contentName, resultList);
+			inputStream = new FileInputStream(path);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -342,6 +364,13 @@ public class ActionPopuHuInfoQuery extends WebSupport {
 	}
 	public void setHuFloorOnly(boolean isHuFloorOnly) {
 		this.isHuFloorOnly = isHuFloorOnly;
+	}
+
+	public List<Map<String, Object>> getResultList() {
+		return resultList;
+	}
+	public void setResultList(List<Map<String, Object>> resultList) {
+		this.resultList = resultList;
 	}
 
 	private static final Logger log = Logger

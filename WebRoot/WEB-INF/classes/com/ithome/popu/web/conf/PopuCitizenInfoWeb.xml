@@ -1,0 +1,111 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      人口基础信息<include file="org/bkgd/popu/web/conf/PopuCitizenInfoWeb.xml"></include> -->
+<struts>
+	<!-- 人口基础信息 -->
+	<package name="PopuCitizenInfo_Ajax_code" extends="json-default">
+		<!-- 人口基础信息查询 -->
+		<action name="PopuCitizenInfoqueryAll" method="queryall"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 根据户查找人口信息 -->
+		<action name="PopuHuCitizenInfoqueryAll" method="huCitizenInfoqueryAll"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 人口基础信息增加 -->
+		<action name="PopuCitizenInfoaddCommit" method="addSubmit"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 人口基础信息删除 -->
+		<action name="PopuCitizenInfodeleteCommit" method="delSubmit"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 人口基础信息修改 -->
+		<action name="PopuCitizenInfoeditCommit" method="editSubmit"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 导出报表 -->
+		<action name="exportRepotcitizenInfo" method="report"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="report.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+		<!--身份证唯一性校验 -->
+		<action name="IdCardCheckOnly_CitizenInfo" method="idCardCheckOnly"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	<package name="PopuCitizenInfo_Jsp_code" extends="struts-default">
+		<!-- 人口基础信息详细【修改、浏览】 -->
+		<action name="PopuCitizenInfoshow" method="view"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuCitizenInfoEntity.jsp</result>
+		</action>
+		<!-- 人口基础信息详细(查看单个信息)-->
+		<action name="PopuCitizenInfoSingleShow" method="view"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuCitizenInfoSingleEntity.jsp</result>
+		</action>
+		<!-- 人口集成页面【修改、浏览】 -->
+		<action name="PopuCitizenInfoAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuCitizenInfoAll.jsp</result>
+		</action>
+		<!-- html加载人口基础信息控制台 -->
+		<action name="PopuCitizenInfo_ACTION_CONSOLE">
+			<result>/popu/pPopuCitizenInfoLayout.jsp</result>
+		</action>
+		<!-- ajax加载人口基础信息选择页面 -->
+		<action name="PopuCitizenInfo_ACTION_ALERT" >
+			<result>/popu/pPopuCitizenInfoGrid.jsp</result>
+		</action>
+			
+		<!-- 优抚信息查看页面 -->
+		<action name="PopuCareInfoAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuCareInfoView.jsp</result>
+		</action>
+		<!-- 残疾人信息查看页面 -->
+		<action name="PopuDeformityInfoAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuDeformityInfoView.jsp</result>
+		</action>
+		<!--  离退休干部信息查看页面 -->
+		<action name="PopuRetireInfoAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuRetireInfoView.jsp</result>
+		</action>
+		<!-- 计划生育信息查看页面 -->
+		<action name="PopuWedInfoAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuWedInfoView.jsp</result>
+		</action>
+		<!-- 党员信息查看页面 -->
+		<action name="PopuPartymemberAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuPartymemberView.jsp</result>
+		</action>
+		<!-- 低保信息查看页面 -->
+		<action name="PopuLowSafeAllshow" method="allView"
+			class="com.ithome.popu.web.action.ActionPopuCitizenInfoQuery">
+			<result>/popu/pPopuCitizenlowsafeView.jsp</result>
+		</action>
+	</package>
+</struts>

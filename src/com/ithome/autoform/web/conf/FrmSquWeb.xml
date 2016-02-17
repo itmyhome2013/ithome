@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/autoform/web/conf/FrmSquWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="FrmSqu_Ajax_code" extends="json-default">
+		<!-- 实体管理查询 -->
+		<action name="FrmSququeryAll" method="queryall"
+			class="com.ithome.autoform.web.action.ActionFrmSquQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 实体管理增加 -->
+		<action name="FrmSquaddCommit" method="addSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmSquQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理删除 -->
+		<action name="FrmSqudeleteCommit" method="delSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmSquQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理修改 -->
+		<action name="FrmSqueditCommit" method="editSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmSquQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FrmSqu_Jsp_code" extends="struts-default">
+		<!-- 实体管理详细【修改、浏览】 -->
+		<action name="FrmSqushow" method="view"
+			class="com.ithome.autoform.web.action.ActionFrmSquQuery">
+			<result>/UI/autoform/pFrmSquEntity.jsp</result>
+		</action>
+		<!-- html加载实体管理控制台 -->
+		<action name="FrmSqu_ACTION_CONSOLE">
+			<result>/UI/autoform/pFrmSquLayout.jsp</result>
+		</action>
+		<!-- ajax加载实体管理选择页面 -->
+		<action name="FrmSqu_ACTION_ALERT" >
+			<result>/UI/autoform/pFrmSquGrid.jsp</result>
+		</action>
+	</package>
+</struts>

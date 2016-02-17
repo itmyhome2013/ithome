@@ -1,0 +1,44 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      文件<include file="com/farm/doc/web/conf/FarmDocfileWeb.xml"></include> -->
+<struts>
+	<!-- 文件 -->
+	<package name="FarmDocfile_Ajax_code" extends="json-default">
+		<!-- 文件查询 -->
+		<action name="FarmDocfilequeryAll" method="queryall"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文件增加 -->
+		<action name="FarmDocfileaddCommit" method="addSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文件删除 -->
+		<action name="FarmDocfiledeleteCommit" method="delSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文件修改 -->
+		<action name="FarmDocfileeditCommit" method="editSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmDocfile_Jsp_code" extends="struts-default">
+		<!-- 文件详细【修改、浏览】 -->
+		<action name="FarmDocfileshow" method="view"
+			class="com.farm.doc.web.action.ActionFarmDocfileQuery">
+			<result>/PLUGIN/document/pFarmDocfileEntity.jsp</result>
+		</action>
+		<!-- html加载文件控制台 -->
+		<action name="FarmDocfile_ACTION_CONSOLE">
+			<result>/PLUGIN/document/pFarmDocfileLayout.jsp</result>
+		</action>
+		<!-- ajax加载文件选择页面 -->
+		<action name="FarmDocfile_ACTION_ALERT" >
+			<result>/PLUGIN/document/pFarmDocfileGrid.jsp</result>
+		</action>
+	</package>
+</struts>

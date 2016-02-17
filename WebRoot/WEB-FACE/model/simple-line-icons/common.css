@@ -1,0 +1,8 @@
+.has-feedback-left .form-control {
+	padding-left: 42.5px;
+}
+.form-control-feedback {
+	left: 0;
+	line-height: inherit;
+	color: #aaa;
+}

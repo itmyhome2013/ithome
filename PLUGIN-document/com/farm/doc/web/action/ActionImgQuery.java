@@ -68,8 +68,8 @@ public class ActionImgQuery extends WebSupport {
 	public String upload() {
 		try {
 			String fileid = null;
-			fileid = aloneIMP.saveFile(imgFile, FILE_TYPE.HTML_INNER_IMG,
-					imgFileFileName, getCurrentUser());
+			/*fileid = aloneIMP.saveFile(imgFile, FILE_TYPE.HTML_INNER_IMG,
+					imgFileFileName, getCurrentUser());*/
 			error = 0;
 			url = aloneIMP.getFileURL(fileid);
 			message = "";

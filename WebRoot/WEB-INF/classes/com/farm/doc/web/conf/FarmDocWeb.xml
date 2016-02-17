@@ -1,0 +1,104 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!--
+		将该脚本加入struts2配置文件中 文档管理<include
+		file="com/farm/doc/web/conf/FarmDocWeb.xml"></include>
+	-->
+<struts>
+	<!-- 文档管理 -->
+	<package name="FarmDoc_Ajax_code" extends="json-default">
+		<!-- 文档管理查询 -->
+		<action name="FarmDocqueryAll" method="queryall"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文档管理增加 -->
+		<action name="FarmDocaddCommit" method="addSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文档管理删除 -->
+		<action name="FarmDocdeleteCommit" method="delSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 文档管理修改 -->
+		<action name="FarmDoceditCommit" method="editSubmit"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 所有类型文件上传 -->
+		<action name="FPupload" class="com.farm.doc.web.action.ActionImgQuery"
+			method="upload">
+			<result type="json">
+				<param name="includeProperties">
+					message,error,url,id
+				</param>
+			</result>
+			<result name="input">/PLUGIN/document/uploaderror.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<param name="allowedTypes">application/empty,application/x-rar-compressed,application/excel,application/vnd.ms-excel,application/octet-stream,application/x-rar-compressed,image/bmp,application/msword,image/png,image/gif,image/jpeg,application/octet-stream,application/octet-stream,application/zip,application/x-zip-compressed,application/pdf,application/x-shockwave-flash</param>
+				<!-- 文件大小, 以字节为单位   2097152两兆 -->
+				<param name="maximumSize">500097152</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<!-- 图片上传 -->
+		<action name="FPImgupload" class="com.farm.doc.web.action.ActionImgQuery"
+			method="upload">
+			<result type="json">
+				<param name="includeProperties">
+					message,error,url,id
+				</param>
+			</result>
+			<result name="input">/PLUGIN/document/uploaderror.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<param name="allowedTypes">image/bmp,application/msword,image/png,image/gif,image/jpeg</param>
+				<!-- 文件大小, 以字节为单位   2097152两兆 -->
+				<param name="maximumSize">2097152</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<!-- 文件下载 -->
+		<action name="FPloadfile" method="download"
+			class="com.farm.doc.web.action.ActionImgQuery">
+			<result name="error">/WEB-FACE/img/temp/farmlogo.png</result>
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<!-- 文档管理权限分配提交 -->
+		<action name="FarmDocRighteditCommit" method="rightEditCommit"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmDoc_Jsp_code" extends="struts-default">
+		<!-- 文档管理详细【修改、浏览】 -->
+		<action name="FarmDocshow" method="view"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result>/PLUGIN/document/pFarmDocEntity.jsp</result>
+		</action>
+		<!-- 文档管理权限分配【修改】 -->
+		<action name="FarmDocRightedit" method="rightEdit"
+			class="com.farm.doc.web.action.ActionFarmDocQuery">
+			<result>/PLUGIN/document/pFarmDocRightEntity.jsp</result>
+		</action>
+		<!-- html加载文档管理控制台 -->
+		<action name="FarmDoc_ACTION_CONSOLE">
+			<result>/PLUGIN/document/pFarmDocLayout.jsp</result>
+		</action>
+		<!-- ajax加载文档管理选择页面 -->
+		<action name="FarmDoc_ACTION_ALERT">
+			<result>/PLUGIN/document/pFarmDocGrid.jsp</result>
+		</action>
+	</package>
+</struts>

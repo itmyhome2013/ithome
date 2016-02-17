@@ -1,0 +1,48 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 权限资源 -->
+	<package name="popActionWebAjax" extends="json-default">
+		<!-- 权限资源查询 -->
+		<action name="ALONEACTION_SYSBASE_QUERYALL" method="queryall"
+			class="com.farm.console.web.action.ActionPopAction">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源增加 -->
+		<action name="ALONEACTION_ADD_SUBMIT" method="addSubmit"
+			class="com.farm.console.web.action.ActionPopAction">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源删除 -->
+		<action name="ALONEACTION_DEL_SUBMIT" method="delSubmit"
+			class="com.farm.console.web.action.ActionPopAction">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源修改 -->
+		<action name="ALONEACTION_EDIT_SUBMIT" method="editSubmit"
+			class="com.farm.console.web.action.ActionPopAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="popActionWebJsp" extends="struts-default">
+		<!-- 权限资源详细【修改、浏览】 -->
+		<action name="ALONEACTION_VIEW_SUBMIT" method="view"
+			class="com.farm.console.web.action.ActionPopAction">
+			<result>/PLUGIN/pop/pAloneActionEntity.jsp</result>
+		</action>
+		<!-- 加载资源权限控制台 -->
+		<action name="ALONEACTION_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionPopAction">
+			<result>/PLUGIN/pop/pAloneActionLayout.jsp</result>
+		</action>
+		<!-- 加载选择资源权限窗口  -->
+		<action name="AloneAction_ACTION_ALERT"  >
+			<result>/PLUGIN/pop/pAloneActionGrid.jsp</result>
+		</action>
+		<!-- 加载资源选择页面 -->
+		<action name="ALONEACTION_ACTION_ALERT" >
+			<result>/PLUGIN/pop/pAloneActionGrid.jsp</result>
+		</action>
+	</package>
+</struts>

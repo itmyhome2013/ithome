@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- Dao实现 -->
+	<bean id="ALONE_Rolegroup_DAO"
+		class="com.farm.console.prisist.dao.RolegroupDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ALONE_USER_ROLEGROUPDaoId"
+		class="com.farm.console.prisist.dao.AloneUserRolegroupDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="ALONE_Rolegroup_SERVER"
+		class="com.farm.console.server.contain.RolegroupManagerImpl">
+		<property name="rolegroupDao">
+			<ref bean="ALONE_Rolegroup_DAO" />
+		</property>
+		<property name="menuRoleDao">
+			<ref bean="ALONE_MenuRolegroup_DAO" />
+		</property>
+		<property name="menuDao">
+			<ref bean="ALONE_Menu_DAO" />
+		</property>
+		<property name="aloneUserRolegroupDao">
+			<ref bean="ALONE_USER_ROLEGROUPDaoId" />
+		</property>
+		<property name="userDao">
+			<ref bean="ALONE_USER_DAO" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="ALONE_Rolegroup_DAO_PROXY"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.console.server.contain.RolegroupManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="ALONE_Rolegroup_SERVER" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="RolegroupTransactionAttributeSource" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="RolegroupTransactionAttributeSource"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

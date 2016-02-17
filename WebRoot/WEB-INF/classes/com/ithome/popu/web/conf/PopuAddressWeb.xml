@@ -1,0 +1,45 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      房屋基础信息<include file="org/bkgd/popu/web/conf/PopuHuInfoWeb.xml"></include> -->
+<struts>
+	<!-- 地址服务 -->
+	<package name="PopuAddress_Ajax_code" extends="json-default">
+		<!-- 获取ajax地址树 -->
+		<action name="PopuAjaxAddressTreeLoad" method="treeLoad"
+			class="com.ithome.popu.web.action.ActionPopuAddressQuery">
+			<result type="json">
+				<param name="root">treeNodes</param>
+			</result>
+		</action>
+		<!-- 获取ajax树节点 -->
+		<action name="PopuAjaxAddressNodeLoad" method="nodeLoad"
+			class="com.ithome.popu.web.action.ActionPopuAddressQuery">
+			<result type="json">
+				<param name="root">node</param>
+			</result>
+		</action>
+		<!-- 获取ajax树节点的上级全路径 -->
+		<action name="PopuAjaxAddressNodeLoad" method="nodeAllPath2"
+			class="com.ithome.popu.web.action.ActionPopuAddressQuery">
+			<result type="json">
+				<param name="root">pathParent</param>
+			</result>
+		</action>
+		<!-- 获取ajax树节点的ISBUILDING -->
+		<action name="PopuAjaxBuildingNodeLoad" method="nodeBuilding"
+			class="com.ithome.popu.web.action.ActionPopuAddressQuery">
+			<result type="json">
+				<param name="root">isBuilding</param>
+			</result>
+		</action>
+		
+		<!-- 根据code获取parentcode -->
+		<action name="PopuAjaxAddressGetParentCode" method="getParentCode"
+			class="com.ithome.popu.web.action.ActionPopuAddressQuery">
+			<result type="json">
+				<param name="root">node</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,73 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 系统菜单 -->
+	<package name="popMenuWebAjax" extends="json-default">
+		<!-- 权限资源查询 -->
+		<action name="ALONEMenu_SYSBASE_QUERYALL" method="queryall"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源查询AJAXTREE -->
+		<action name="ALONEMenu_SYSBASE_QUERYTREE" method="queryTree"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源增加 -->
+		<action name="ALONEMenu_ADD_SUBMIT" method="addSubmit"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源删除 -->
+		<action name="ALONEMenu_DEL_SUBMIT" method="delSubmit"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源修改 -->
+		<action name="ALONEMenu_EDIT_SUBMIT" method="editSubmit"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源修改 -->
+		<action name="ALONEMenu_Copy" method="copySubmit"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json"></result>
+		</action>
+		<!-- ajax加载树URL -->
+		<action name="ALONEMENU_SYSBASE_TREENODE" method="loadTreeNode"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json">
+				<param name="root">treeNodes</param>
+			</result>
+		</action>
+		<!-- 一次加载全部树URL -->
+		<action name="ALONEMENU_All_TREENODE" method="loadAllTreeNode"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result type="json">
+				<param name="root">treeNodes</param>
+			</result>
+		</action>
+	</package>
+	<package name="popMenuWebJsp" extends="struts-default">
+		<!-- 权限资源详细【修改、浏览】 -->
+		<action name="ALONEMenu_VIEW_SUBMIT" method="view"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result>/PLUGIN/pop/pAloneMenuEntity.jsp</result>
+		</action>
+		<!-- 加载资源权限控制台 -->
+		<action name="ALONEMenu_ACTION_CONSOLE" method="forSend"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result>/PLUGIN/pop/pAloneMenuLayout.jsp</result>
+		</action>
+		<!-- 加载菜单图标图片 -->
+		<action name="ALONEMenu_ACTION_Icon" method="chooseIcon"
+			class="com.farm.console.web.action.ActionPopMenu">
+			<result>/PLUGIN/pop/pAloneMenuIcon.jsp</result>
+		</action>
+		<!-- 加载css菜单图片样式 -->
+		<action name="ALONEMenu_ACTION_cssIcon">
+			<result>/PLUGIN/pop/pAloneMenuCssIcon.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -48,6 +48,38 @@
 			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
 		</attribute>
 	</tag>
+	
+	<tag><!-- 生成表单 -->
+		<name>GenerateForm</name>
+		<tag-class>
+			com.farm.web.tag.GenerateFormTaget
+		</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>tableId</name><!-- 表ID -->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>true</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+		<attribute>
+			<name>keyId</name><!-- 主键ID -->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>true</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+	</tag>
+	
+	<tag><!-- 生成表头 -->
+		<name>GenerateHead</name>
+		<tag-class>
+			com.farm.web.tag.GenerateHeadTaget
+		</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>tableId</name><!-- 字段索引名 -->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>true</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+	</tag>
+	
 	<tag><!-- 从数据字典检出一个option列表 -->
 		<name>FormatTime</name>
 		<tag-class>

@@ -1,0 +1,47 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 表基础信息 -->
+	<package name="FrmTable_Ajax_code" extends="json-default">
+		<!-- 表基础信息查询 -->
+		<action name="FrmTablequeryAll" method="queryall"
+			class="com.ithome.autoform.web.action.ActionFrmTableQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 表单基础信息修改 -->
+		<action name="FrmTableeditCommit" method="editSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmTableQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 表单基础信息删除 -->
+		<action name="FrmTabledeleteCommit" method="delSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmTableQuery">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	<package name="FrmTable_Jsp_code" extends="struts-default">
+
+		<action name="FrmTableshow" method="view"
+			class="com.ithome.autoform.web.action.ActionFrmTableQuery">
+			<result>/autoform/pFrmTableEntity.jsp</result>
+		</action>
+		
+		<!-- 表单基础信息详细【修改、浏览】 -->
+		<action name="FrmTableAllShow" method="allView"
+			class="com.ithome.autoform.web.action.ActionFrmTableQuery">
+			<result>/autoform/pFrmTableAll.jsp</result>
+		</action>
+		
+		<!-- html加载表基础信息控制台 -->
+		<action name="FrmTable_ACTION_CONSOLE">
+			<result>/autoform/pFrmTableLayout.jsp</result>
+		</action>
+
+	</package>
+</struts>

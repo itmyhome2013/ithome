@@ -1,0 +1,101 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/autoform/web/conf/FrmFieldWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="FrmField_Ajax_code" extends="json-default">
+		<!-- 实体管理查询 -->
+		<action name="FrmFieldqueryAll" method="queryall"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="FrmOperateFormqueryAll" method="operateFormqueryall"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 实体管理增加 -->
+		<action name="FrmFieldaddCommit" method="addSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理删除 -->
+		<action name="FrmFielddeleteCommit" method="delSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 实体管理操作表单删除 -->
+		<action name="FrmOperateFielddeleteCommit" method="delOperateSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 实体管理修改 -->
+		<action name="FrmFieldeditCommit" method="editSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 实体管理修改 -->
+		<action name="FrmOperateFieldeditCommit" method="editOperateSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 实体管理修改(不验证登录) -->
+		<action name="FPFrmOperateFieldeditCommit" method="editOperateSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	<package name="FrmField_Jsp_code" extends="struts-default">
+	
+		
+		<!-- 实体管理详细【修改、浏览】 -->
+		<action name="FrmFieldshow" method="view"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result>/UI/autoform/pFrmFieldEntity.jsp</result>
+		</action>
+		
+		<!-- 操作表单【新增、修改、浏览】 -->
+		<action name="FrmOperateFieldshow" method="view"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result>/UI/autoform/pFrmOperateFieldEntity.jsp</result>
+		</action>
+		
+		<!-- 表单预览 -->
+		<action name="FrmPreviewForm" method="previewForm"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result>/UI/autoform/pFrmPreviewForm.jsp</result>
+		</action>
+		
+		<!-- 操作表单 -->
+		<action name="FrmOperateForm" method="operateForm"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result>/UI/autoform/pFrmOperateForm.jsp</result>
+		</action>
+		
+		<!-- 表单链接  参数： tableid -->
+		<action name="FPForm" method="previewForm"
+			class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result>/UI/autoform/pFrmPreviewAloneForm.jsp</result>
+		</action>
+		
+		<!-- html加载实体管理控制台 -->
+		<action name="FrmField_ACTION_CONSOLE" class="com.ithome.autoform.web.action.ActionFrmFieldQuery">
+			<result>/UI/autoform/pFrmFieldLayout.jsp</result>
+		</action>
+		<!-- ajax加载实体管理选择页面 -->
+		<action name="FrmField_ACTION_ALERT" >
+			<result>/UI/autoform/pFrmFieldGrid.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,53 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!--将该脚本加入struts2配置文件中      系统日志-->
+<struts>
+	<!-- 系统日志 -->
+	<package name="AloneApplog_Ajax_code" extends="json-default">
+		<!-- 系统日志查询 -->
+		<action name="AloneApplogqueryAll" method="queryall"
+			class="com.farm.console.web.action.ActionAloneApplogQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 系统日志增加 -->
+		<action name="AloneApplogaddCommit" method="addSubmit"
+			class="com.farm.console.web.action.ActionAloneApplogQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 系统日志删除 -->
+		<action name="AloneApplogdeleteCommit" method="delSubmit"
+			class="com.farm.console.web.action.ActionAloneApplogQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 系统日志修改 -->
+		<action name="AloneApplogeditCommit" method="editSubmit"
+			class="com.farm.console.web.action.ActionAloneApplogQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="AloneApplog_Jsp_code" extends="struts-default">
+		<!-- 系统日志详细【修改、浏览】 -->
+		<action name="AloneApplogshow" method="view"
+			class="com.farm.console.web.action.ActionAloneApplogQuery">
+			<result>/PLUGIN/pop/pAloneApplogEntity.jsp</result>
+		</action>
+		<!-- html加载系统日志控制台 -->
+		<action name="AloneApplog_ACTION_CONSOLE">
+			<result>/PLUGIN/pop/pAloneApplogLayout.jsp</result>
+		</action>
+		<!-- ajax加载系统日志选择页面 -->
+		<action name="AloneApplog_ACTION_ALERT">
+			<result>/PLUGIN/pop/pAloneApplogGrid.jsp</result>
+		</action>
+		<action name="AloneApplogExcel" method="report"
+			class="com.farm.console.web.action.ActionAloneApplogQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="log.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,280 @@
+
+@media(min-width:768px){
+
+}
+
+/*****************************/
+@media(min-width:1200px){
+	
+}
+@media(max-width:1199px){
+	#homePage .why .feature {
+
+	}
+	#featuresPage .jumbo h1 {
+		margin: 10px 0 20px;
+		font-size: 36px;
+	}
+}
+
+@media(max-width:991px){
+	#homePage .example-section .longform {
+		padding: 0;
+		text-align: center;
+	}
+	#homePage .example-section h3 {
+		margin: 40px 0 20px;
+	}
+	#homePage .why .feature {
+
+	}
+	#featuresPage .jumbo {
+		text-align: center;
+	}
+	#featuresPage .jumbo h1 {
+		text-align: center;
+		margin: 10px 0 20px;
+		font-size: 36px;
+	}
+	#featuresPage .jumbo .btn {
+		margin-bottom: 60px;
+	}
+	#pricingPage .pricingtables .plan ul li {
+		font-size: 14px;
+	}
+	#pricingPage .pricingtables .plan .price h3 {
+		font-size: 70px;
+	}
+}
+@media(min-width:992px){
+
+}
+@media(max-width:767px){
+	.navbar {
+		padding-bottom: 8px;
+		border: 0 none;
+	}
+	.navbar .logo {
+		margin-left: 15px;
+	}
+	.navbar-toggle {
+		border-color: #bbb;
+		margin: 0 15px 15px;
+	}
+	.navbar-toggle .icon-bar {
+		background: #999;
+	}
+	.navbar-collapse {
+		border-top: 1px solid rgba(0,0,0,0.2);
+		box-shadow: none;
+	}
+	.navbar-collapse ul.nav {
+		margin: 0 -15px;
+	}
+	.navbar-collapse ul.nav li {
+		text-align: left;
+		border-bottom: 1px solid rgba(0,0,0,0.12);
+	}
+	.navbar-nav > li > a {
+		margin: 0;
+	}
+	.navbar-nav > li > a:hover,
+	.navbar-nav > li > a:focus {
+		background: rgba(0,0,0,0.05) !important;
+		color: #656565 !important;
+	}
+	.navbar-nav > li > a.btn-outline {
+		font-weight: 300;
+		text-align: left;
+		border: 0;
+		border-radius: 0;
+	}
+	.navbar-nav > li > a.btn-primary {
+		font-weight: 300;
+		text-align: left;
+		background: none;
+		border: 0;
+		border-radius: 0;
+		color: #656565 !important;
+	}
+	#homePage .jumbo {
+		text-align: center;
+		padding: 40px 0 60px;
+	}
+	#homePage .jumbo .cta h1 {
+		font-size: 40px;
+	}
+	#homePage .jumbo .cta p {
+		font-size: 18px;
+		max-width: 400px;
+		margin: 15px auto 0;
+	}
+	#homePage .jumbo .cta .btn {
+		margin: 40px 0;
+	}
+	#homePage .why {
+		padding: 60px 0 20px;
+	}
+	#homePage .why h2 {
+		font-size: 30px;
+	}
+	#homePage .why .subexp {
+		font-size: 18px;
+		margin-bottom: 40px;
+	}
+	#homePage .why .feature {
+		margin: 0;
+	}
+	#homePage .why .feature .type h4 {
+		margin-top: 25px;
+	}
+	#homePage .why .feature .type p {
+		margin: 0 0 40px;
+		font-size: 16px;
+	}
+	#homePage .templates .shadow-pad {
+		padding: 60px 0 30px;
+	}
+	#homePage .templates h2 {
+		font-size: 30px;
+	}
+	#homePage .templates .subexp {
+		font-size: 18px;
+		margin-bottom: 40px;
+	}
+	#homePage .features {
+		padding: 60px 0 60px;
+	}
+	#homePage .features h2 {
+		font-size: 30px;
+	}
+	#homePage .features .subexp {
+		font-size: 18px;
+		margin-bottom: 40px;
+	}
+	#homePage .features h4 {
+		margin: 0 0 30px;
+		font-size: 16px;
+		height: 40px;
+	}
+	#homePage .features .more-features {
+		margin-top: 10px;
+	}
+	#homePage .beny {
+		padding: 60px 0 30px;
+	}
+	#homePage .beny h2 {
+		font-size: 30px;
+		margin-bottom: 40px;
+	}
+	#homePage .beny img {
+		max-width: 160px;
+		margin-bottom: 40px;
+	}
+	#homePage .beny ul li {
+		margin-bottom: 30px;
+	}
+	#homePage .testimonial {
+		padding: 60px 0;
+	}
+	#homePage .testimonial .usr {
+		text-align: center;
+		border-right: 0;
+		padding: 0;
+	}
+	#homePage .testimonial .usr img {
+		float: none;
+		margin: 0;
+	}
+	#homePage .testimonial .usr .name {
+		float: none;
+	}
+	#homePage .testimonial .usr .name span {
+		border-bottom: 2px solid rgba(255,255,255,0.3);
+		padding-bottom: 1px;
+	}
+	#homePage .testimonial .quote {
+		padding-top: 30px;
+		font-size: 18px;
+		text-align: center;
+	}
+	#homePage .facts {
+		padding: 20px 0 60px;
+	}
+	#homePage .facts h2 {
+		font-size: 30px;
+	}
+	#homePage .facts .subexp {
+		font-size: 18px;
+		margin-bottom: 40px;
+	}
+	footer .copy {
+		float: none;
+		margin-bottom: 0;
+	}
+	footer ul.links {
+		text-align: center;
+	}
+
+
+
+
+
+
+
+	#pricingPage .pricingtables .plan {
+		max-width: 320px;
+		margin: 0 auto 30px;
+	}
+	#aboutPage .member.first {
+		margin-bottom: 40px;
+	}
+	footer .copy {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	footer .heap-badge {
+		display: inline-block;
+		float: none;
+		margin: 0;
+		width: 100%;
+		text-align: center;
+	}
+	footer ul.links {
+		float: none;
+	}
+	footer ul.links li {
+		 float: none; 
+		 margin: 0; 
+	}
+	footer ul.links li a {
+		display: block;
+		padding: 10px 0;
+	}
+}
+
+
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+@media(max-width:800px){
+
+}
+@media(max-width:967px){
+
+
+}
+@media(min-width: 968px){
+
+}
+@media(max-width: 1150px) {
+
+}
+@media(max-width: 1320px){
+
+}
+@media(max-width: 1400px){
+	
+}

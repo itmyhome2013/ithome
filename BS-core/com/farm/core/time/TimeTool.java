@@ -246,6 +246,17 @@ public class TimeTool {
 		return _sdf.format(_date);
 	}
 
+	
+	/**
+	 * 获得14位 格式化后的日期编码
+	 * @return
+	 */
+	public static String getFormatTimeDate14(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date _date = new Date();
+		return sdf.format(_date);
+	}
+	
 	/**
 	 * 获得18位的随即数
 	 */

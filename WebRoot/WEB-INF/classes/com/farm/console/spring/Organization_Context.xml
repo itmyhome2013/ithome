@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- Dao实现 -->
+	<bean id="ALONE_Organization_DAO"
+		class="com.farm.console.prisist.dao.OrganizationDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="ALONE_Organization_SERVER"
+		class="com.farm.console.server.contain.OrganizationManagerImpl">
+		<property name="organizationDao">
+			<ref bean="ALONE_Organization_DAO" />
+		</property>
+		<property name="organizationuserDao">
+			<ref bean="ALONE_OrganizationUser_DAO" />
+		</property>
+		<!-- 组织机构人员中间表Manager -->
+		<property name="orgUserManager">
+			<ref bean="ALONE_OrganizationUser_SERVER" />
+		</property>
+		<!-- 人员Manager -->
+		<property name="userManager">
+			<ref bean="ALONE_USER_SERVER" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="ALONE_Organization_DAO_PROXY"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.console.server.contain.OrganizationManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="ALONE_Organization_SERVER" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="OrganizationTransactionAttributeSource" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="OrganizationTransactionAttributeSource"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

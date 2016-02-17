@@ -230,12 +230,12 @@
 		text : '删除',
 		iconCls : 'icon-remove',
 		handler : delDatapopuhuinfo
-	}//, {
-	 //	id : 'export',
-	 //	text : '导出',
-	 //	iconCls : 'icon-report',
-	 //	handler : exportDatapopuhuinfo
-	 //} 
+	}, {
+	 	id : 'export',
+	 	text : '导出',
+	 	iconCls : 'icon-report',
+	 	handler : exportDatapopuhuinfo
+	 } 
 	];
 	$(function() {
 		//初始化数据表格

@@ -7,7 +7,23 @@
 		<base href="<PF:basePath/>" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><PF:sysTitle />-登录页</title>
-		<jsp:include page="/WEB-FACE/conf/includeH.jsp"></jsp:include>
+		
+		<link rel="stylesheet" type="text/css" href="WEB-FACE/model/easy_ui_1_3_6/themes/gray/easyui.css">
+		<script type="text/javascript" src="WEB-FACE/script/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="WEB-FACE/script/placeholder.js"></script>
+		<script type="text/javascript" src="WEB-FACE/model/easy_ui_1_3_6/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="WEB-FACE/model/easy_ui_1_3_6/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="WEB-FACE/model/easy_ui_1_3_6/easyui.farm.js"></script>	
+		<script type="text/javascript" src="WEB-FACE/model/easy_ui_1_3_6/ajaxfileupload.js"></script>	
+		<script type="text/javascript" src="PLUGIN/pop/commons/jquery.validate.exp.js"></script>	
+		<script type="text/javascript" src="PLUGIN/pop/commons/tools.js"></script>	
+		
+		<link rel="stylesheet" type="text/css" href="WEB-FACE/model/bootstrap-3.3.1/css/bootstrap.min.css" />
+		<script type="text/javascript" src="WEB-FACE/model/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" style="text/css" href="WEB-FACE/model/simple-line-icons/css/simple-line-icons.css">
+		<link rel="stylesheet" style="text/css" href="WEB-FACE/model/simple-line-icons/common.css">
+		<link rel="stylesheet" style="text/css" href="WEB-FACE/model/simple-line-icons/style.css">
+		<link rel="stylesheet" style="text/css" href="WEB-FACE/model/simple-line-icons/media-queries.css">
 		<script src="<PF:basePath/>/WEB-FACE/script/Md5.js"
 			language="javascript" type="text/javascript"></script>
 		<style type="text/css">
@@ -24,19 +40,19 @@ html {
 }
 
 body {
-	font-family: 微软雅黑, tahoma, verdana, arial, sans-serif;
+	/*font-family: 微软雅黑, tahoma, verdana, arial, sans-serif;
 	font-size: 85%;
 	margin: 0;
 	padding: 0;
 	line-height: 1.5em;
-	color: #3f3f3f;
+	color: #3f3f3f;*/
 }
 
 #loginPage {
 	margin: 100px auto 0 auto;
 	padding: 0 0 1em 0;
 	height: 100%;
-	width: 600px;
+	width: 700px;
 	text-align: left;
 	background: #e3e9ef;
 	border: solid 1em #fff;
@@ -111,8 +127,7 @@ h1{ font-size: 36px;}
 </style>
 	</head>
 	<body
-		style="background-image: url('WEB-FACE/img/style/bgLogin-1.jpg');"
-		onload="window.document.forms[0].name.focus();document.getElementById('name').focus();">
+		style="background-image: url('WEB-FACE/img/style/bgLogin-1.jpg');">
 		<div id="noCookiesEnabledMessage" class="noCookiesEnabledMessage"
 			style="display: none;">
 			Please enable cookies in your browser to proceed with login.
@@ -127,73 +142,50 @@ h1{ font-size: 36px;}
 				<form name="loginform" id="loginFormId" method="post"
 						action="admin/ALONEFRAME_LOGIN_COMMIT.do"
 					class="form-singin">
-					<table width="100%">
+					<table>
 						<tr>
 							<td colspan="3">
-								<h2 id="header" class="bottomBorder form-signin">
-									<span style="font-weight: bold; margin-top: 0;">登录</span>
-									<font color="green">西城区文物管理处</font>可移动文物信息管理系统
-									
-								</h2>
+								<h3 id="header" class="bottomBorder form-signin">
+									登录
+									<font color="green" style="font-size: 18px;">西城区文物管理处</font>
+									可移动文物信息管理系统
+								</h3>
+								<!-- 
 								<p id="loginDescription">
 									<span class="text-muted"><span class="vWord">Version</span>
 									1.0</span>欢迎使用 ！
 								</p>
-							</td>
-						</tr>
-						<tr>
-							<td align="right" width="15%">
-								<label class="control-label" for="username">
-									用户名:&nbsp;&nbsp;
-								</label>
-							</td>
-							<td align="left" width="50%">
-								<input class="form-control logininput" id="name" type="text"
-									name="name" style="width: 200px;" value="sysadmin" />
-							</td>
-							<td>
-								&nbsp
-							</td>
-						</tr>
-						<tr>
-							<td align="right" width="15%">
-								<label class="control-label" for="password">
-									密码:&nbsp;&nbsp;
-								</label>
-							</td>
-							<td align="left" width="50%">
-								<input class="form-control logininput" id="passwordId"
-									type="password" name="password" style="width: 200px;" value="111111" />
-							</td>
-							<td>
-								<a
-									href="http://127.0.0.1:8090/iserver/services/security/../../help/index.htm#Server_Service_Management/Login_service_manager.htm#forgetpassword"
-									target="_blank" style="padding-left: 4px;"><!-- 忘记密码 --></a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								&nbsp
-							</td>
-							<td colspan="2">
-							<!-- 	<input id="rememberMe" type="checkbox" name="rememberMe" />
-								&nbsp;&nbsp;
-								<label style="" for="rememberMe">
-									记住我
-								</label> -->
-							</td>
-						</tr>
-						<tr>
-							<td>
-								&nbsp
-							</td>
-							<td colspan="2">
-								<button id="loginButton" class="btn btn-primary" type="button">
-									登录
-								</button>
+								 -->
 							</td>
 						</tr>
 					</table>
+					<table>
+						<tr>
+							<td>
+								<div class="form-group has-feedback has-feedback-left">
+									<input name="name" type="text" class="form-control valid" placeholder="Username" aria-invalid="false">
+									<i class="icon-user form-control-feedback"></i>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="form-group has-feedback has-feedback-left">
+									<input name="password" type="password" class="form-control" placeholder="Password">
+									<i class="icon-key form-control-feedback"></i>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="form-group action clearfix">
+									<button id="log_in" class="pull-left btn btn-success loginBtn" type="submit" data-loading-text="Log in">登录</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+			
+					
 				</form>
 				<div id="errorMessage" class="errorMsg">${page.message}</div>
 			</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 运维工具 -->
+	<package name="HhCommon_Jsp_code" extends="struts-default">
+		<!-- 数据库控制台 -->
+		<action name="HhcommonDataEdit" method="console"
+			class="com.farm.tool.web.action.ActionDataUtil">
+			<result>/PLUGIN/dbconsole/DataConsole.jsp</result>
+		</action>
+		<!-- 数据库控制台 -->
+		<action name="HhcommonDatadosearch" method="doquery"
+			class="com.farm.tool.web.action.ActionDataUtil">
+			<result>/PLUGIN/dbconsole/DataConsole.jsp</result>
+		</action>
+		<!-- 数据库控制台 -->
+		<action name="HhcommonDataSqlRun" method="sqlRun"
+			class="com.farm.tool.web.action.ActionDataUtil">
+			<result>/PLUGIN/dbconsole/DataConsole.jsp</result>
+		</action>
+		<!-- 数据库控制台 -->
+		<action name="HhcommonDataFileMng" method="fileMng"
+			class="com.farm.tool.web.action.ActionDataUtil">
+			<result>/PLUGIN/dbconsole/DataConsole.jsp</result>
+		</action>
+		<action name="HhcommonDataFiledownload" method="download"
+			class="com.farm.tool.web.action.ActionDataUtil">
+			<result name="success" type="stream">
+				<!-- 指定下载文件的内容类型，text/plain是默认类型 -->
+				<param name="contentType">text/plain</param>
+				<!--动态获取文件名，从Action中的取得filename-->
+				<param name="contentDisposition">
+					attachment;filename="${filename}"
+        		</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+	</package>
+</struts>
