@@ -1,19 +1,18 @@
-###项目框架
+### 项目框架
 
-使用技术： 
+#### 使用技术
 ===========
 
 + EasyUI
 + Bootstrap
 + jQuery
-
 + Struts2
 + Spring
 + Hibernate
 + JDBC
 + Oracle
 
-项目功能：
+#### 项目功能
 ===========
 
 + 数据字段
