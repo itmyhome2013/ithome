@@ -37,6 +37,7 @@
 
 								$.messager.alert(MESSAGE_PLAT.PROMPT,
 										MESSAGE_PLAT.SUCCESS, 'info');
+								$("#dom_var_grid").datagrid('reload');
 							} else {
 								var str = MESSAGE_PLAT.ERROR_SUBMIT
 										+ flag.pageset.message;

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      实体管理<import resource="classpath:org/bkgd/pcs/business/config/ActExTaskusercfgContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 实体管理Dao实现 -->
+	<bean id="actExTaskusercfg_DaoId"
+		class="com.ithome.pcs.business.dao.ActExTaskusercfgDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="ActExTaskusercfg_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="ActExTaskusercfg_object" class="com.ithome.pcs.comm.entity.ActExTaskusercfg"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="ActExTaskusercfg_ServerId"
+		class="com.ithome.pcs.business.server.ActExTaskusercfgManagerImpl">
+		<property name="actExTaskusercfgDao">
+			<ref bean="actExTaskusercfg_DaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="ActExTaskusercfg_ProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.ithome.pcs.business.server.ActExTaskusercfgManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="ActExTaskusercfg_ServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="ACTEXTASKUSERCFG_INFOTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="ACTEXTASKUSERCFG_INFOTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

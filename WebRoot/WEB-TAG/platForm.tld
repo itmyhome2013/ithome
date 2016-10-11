@@ -49,6 +49,68 @@
 		</attribute>
 	</tag>
 	
+	<tag><!-- 从一个指定的Table中检出一个option列表 -->
+		<name>OptionFromTable</name>
+		<tag-class>
+			com.farm.web.tag.TableOptionTaget
+		</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>isTextValue</name>
+			<!--
+				是否用名称做值 1是(<option value=text >text</option>) 0否 (<option value=type
+				>text</option>)
+			-->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+		<attribute>
+			<name>table</name><!-- 表名 -->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+		
+		<attribute>
+			<name>fieldKey</name><!-- 使用该字段作为 Key -->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+		
+		<attribute>
+			<name>fieldName</name><!-- 使用该字段作为 Name -->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+		
+		<attribute>
+			<name>title</name><!-- 该字段备用 -->
+			<required>false</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+	</tag>
+	
+	<tag><!-- 查询Word文档列表 -->
+		<name>OptionWordList</name>
+		<tag-class>
+			com.farm.web.tag.WordListOptionTaget
+		</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>isTextValue</name>
+			<!--
+				是否用名称做值 1是(<option value=text >text</option>) 0否 (<option value=type
+				>text</option>)
+			-->
+			<required>true</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+		<attribute>
+			<name>index</name><!-- 字段索引名 -->
+			<required>false</required><!-- 是否必填 -->
+			<rtexprvalue>false</rtexprvalue><!-- 是否能够以${}方式传值 -->
+		</attribute>
+	</tag>
+	
 	<tag><!-- 生成表单 -->
 		<name>GenerateForm</name>
 		<tag-class>

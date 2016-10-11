@@ -1,0 +1,29 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/ActExLeavetestWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="ActExLeavetest_Ajax_code" extends="json-default">
+       <!-- 实体管理增加 -->
+		<action name="ActExLeavetestAddCommit" method="addSubmit"
+			class="com.ithome.pcs.business.web.action.ActExLeavetestAction">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理修改 -->
+		<action name="ActExLeavetestEditCommit" method="editSubmit"
+			class="com.ithome.pcs.business.web.action.ActExLeavetestAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	
+	<package name="ActExLeavetest_Jsp_code" extends="struts-default">
+	   <!-- 实体管理详细【修改、浏览】 -->
+		<action name="ActExLeavetestshow" method="view"
+			class="com.ithome.pcs.business.web.action.ActExLeavetestAction">
+			<result>/UI-PCS/pcs/pPcsActExLeavetestEntity.jsp</result>
+		</action>
+	</package>
+	
+</struts>

@@ -1,0 +1,75 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 流程表单配置信息 -->
+	<package name="FrmProcessForm_Ajax_code" extends="json-default">
+		<!-- 表基础信息查询 -->
+		<action name="FrmProcessFormqueryAll" method="queryall"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 查询表单配置 -->
+		<action name="FrmConfigFormqueryAll" method="configFormqueryall"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 表单基础信息修改 -->
+		<action name="FrmProcessFormeditCommit" method="editSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 表单基础信息删除 -->
+		<action name="FrmProcessFormdeleteCommit" method="delSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 配置表单删除 -->
+		<action name="FrmConfigFormdeleteCommit" method="delSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 保存Word -->
+		<action name="saveWordForm" method="saveWordForm"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	<package name="FrmProcessForm_Jsp_code" extends="struts-default">
+
+		<action name="FrmProcessFormshow" method="view"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result>/autoform/pFrmProcessFormEntity.jsp</result>
+		</action>
+		
+		<action name="FrmConfigFormshow" method="configFormView"
+			class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result>/autoform/pFrmConfigFormEntity.jsp</result>
+		</action>
+		
+		<!-- html加载表基础信息控制台 -->
+		<action name="FrmProcessForm_ACTION_CONSOLE">
+			<result>/autoform/pFrmProcessFormLayout.jsp</result>
+		</action>
+		
+		<action name="FrmPageOffice" method="openForm" class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result>/Samples/SimpleWord/Word2.jsp</result>
+		</action>
+		
+		<!-- 不可编辑查看Word  -->
+		<action name="FrmPageOfficeView" method="forSend" class="com.ithome.autoform.web.action.ActionFrmProcessFormQuery">
+			<result>/Samples/SimpleWord/WordView.jsp</result>
+		</action>
+
+	</package>
+</struts>

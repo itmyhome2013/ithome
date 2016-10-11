@@ -1,0 +1,58 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/DoTaskWeb.xml.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="DoTask_Ajax_code" extends="json-default">
+       <!-- 待办理任务_查询 -->
+		<action name="DoTaskAction_findDoTaskList" method="findDoTaskList"
+			class="com.ithome.pcs.business.web.action.DoTaskAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 待办任务_当前流程图 -->
+		<action name="DoTaskAction_findviewCurrentImage" method="findviewCurrentImage"
+		    class="com.ithome.pcs.business.web.action.DoTaskAction">
+	    </action>
+	    <!-- 需填写表单列表_树型管理 -->
+		<action name="DoTaskAction_doTaskfillFormList" method="doTaskfillFormList"
+			class="com.ithome.pcs.business.web.action.DoTaskAction">
+			<result type="json">
+			    <param name="root">treejson</param>
+			</result>
+		</action>
+	   <!-- 已填写表单列表_树型管理 -->
+		<action name="DoTaskAction_completedFormtree" method="completedFormList"
+			class="com.ithome.pcs.business.web.action.DoTaskAction">
+			<result type="json">
+			    <param name="root">treejson</param>
+			</result>
+		</action>
+	</package>
+	
+	
+	<package name="DoTask_Jsp_code" extends="struts-default">
+	    <!-- 代办任务列表 -->
+        <action name="DoTaskManage_ACTION_CONSOLE" >
+			<result>/UI-PCS/pcs/pPcsDoTaskLayout.jsp</result>
+		</action>
+		<!-- 办理_页面-->
+	    <action name="TaskHandleManage_ACTION_CONSOLE"  method="forSend"
+			        class="com.ithome.pcs.business.web.action.DoTaskAction">
+				<result>/UI-PCS/pcs/pPcsTaskHandleLayout.jsp</result>
+	    </action>
+	    <!--可填表单-->
+	     <action name="DoTaskfillFormManage_ACTION_CONSOLE" method="forSend"
+		        class="com.ithome.pcs.business.web.action.DoTaskAction">
+			<result>/UI-PCS/pcs/pPcsDoTaskfillFormLayout.jsp</result>
+		</action>
+		 <!--已填表单-->
+		<action name="CompletedFormManage_ACTION_CONSOLE" method="forSend"
+		        class="com.ithome.pcs.business.web.action.DoTaskAction">
+			<result>/UI-PCS/pcs/pPcsCompletedFormListLayout.jsp</result>
+		</action>
+	</package>
+	
+</struts>

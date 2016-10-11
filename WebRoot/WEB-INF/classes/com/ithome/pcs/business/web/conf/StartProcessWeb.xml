@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/StartProcessWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="StartProcess_Ajax_code" extends="json-default">
+	
+	<!-- 流程定义树型查询 -->
+	<action name="StartProcessAction_findProcDefTree" method="findProcDefTree"
+			class="com.ithome.pcs.business.web.action.StartProcessAction">
+			<result type="json">
+			    <param name="root">treejson</param>
+			</result>
+	</action>
+	<!-- 启动流程-->
+	<action name="startProcessaddCommit" method="startProcess"
+			class="com.ithome.pcs.business.web.action.StartProcessAction">
+			<result type="json"></result>
+		</action>	
+	<!-- 同步流程节点-->
+	<action name="synchronProcessNode" method="synchronProcess"
+			class="com.ithome.pcs.business.web.action.StartProcessAction">
+			<result type="json"></result>
+		</action>	
+	</package>
+	
+	<package name="StartProcess_Jsp_code" extends="struts-default">
+	     
+	     <!-- 启动流程主页面 -->
+		<action name="StartProcess_ACTION_CONSOLE" method="forSend"
+		        class="com.ithome.pcs.business.web.action.StartProcessAction">
+			<result>/UI-PCS/pcs/pPcsStartProcessManageLayout.jsp</result>
+		</action>
+        <!-- 树型加载页面 -->
+		<action name="StartProcessIframe_ACTION_CONSOLE" method="forSendStartIframe"
+		        class="com.ithome.pcs.business.web.action.StartProcessAction">
+			<result>/UI-PCS/pcs/pPcsStartProcessIframeLayout.jsp</result>
+		</action>
+		 <!-- 业务流程表添加页面 -->
+		<action name="forSendActExProcessEntity_ACTION_CONSOLE" method="forSendActExProcessEntity"
+		        class="com.ithome.pcs.business.web.action.StartProcessAction">
+			<result>/UI-PCS/pcs/pPcsActExProcessEntity.jsp</result>
+		</action>
+	</package>
+</struts>

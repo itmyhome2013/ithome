@@ -119,5 +119,39 @@ class DictionaryFaceImpl implements DictionaryFaceInter {
 	public AloneDictionaryType getTypeByTypeId(String typeId) {
 		return typeUmi.getEntity(typeId);
 	}
+	
+	@Override
+	public List<Map<String, Object>> findOptionFromTable(String tableName,String fieldKey,String fieldName,String title) {
+	
+		DataQuery query = DataQuery
+				.getInstance(
+						"1",
+						"" + fieldKey + " as ID," + fieldName + " as name," + (title==null?"'abc'":title) + " as title",
+						tableName).addUserWhere(" and flag = 0");
+		query.setPagesize(100);
+		try {
+			return query.search().getResultList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public List<Map<String, Object>> findWordList() {
+	
+		DataQuery query = DataQuery
+				.getInstance(
+						"1",
+						"dir,type,name",
+						"ACT_EX_DOCFILE");
+		query.setPagesize(100);
+		try {
+			return query.search().getResultList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      实体管理<import resource="classpath:org/bkgd/pcs/business/config/ActExProcessContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 实体管理Dao实现 -->
+	<bean id="actExProcess_DaoId"
+		class="com.ithome.pcs.business.dao.ActExProcessDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="actExProcess_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="actExProcess_object" class="com.ithome.pcs.comm.entity.ActExProcess"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="actExProcess_ServerId"
+		class="com.ithome.pcs.business.server.ActExProcessManagerImpl">
+		<property name="actExProcessDao">
+			<ref bean="actExProcess_DaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="actExProcess_ProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.ithome.pcs.business.server.ActExProcessManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="actExProcess_ServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="ACTEXPROCESS_INFOTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="ACTEXPROCESS_INFOTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

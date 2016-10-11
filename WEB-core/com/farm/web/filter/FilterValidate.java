@@ -186,7 +186,6 @@ public class FilterValidate implements Filter {
 			if (ck.getName().equals(key)) {
 				return ck.getValue();
 			}
-			System.out.println("========= cook name========="+ck.getName());
 		}
 		return null;
 	}

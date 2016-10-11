@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 任务节点配置Dao实现 -->
+	<bean id="FrmTaskUserDaoId"
+		class="com.ithome.autoform.dao.FrmTaskUserDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="FrmTaskUser_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="FrmTaskUser_object" class="com.ithome.autoform.domain.FrmTaskUser"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="FrmTaskUserServerId"
+		class="com.ithome.autoform.server.FrmTaskUserManagerImpl">
+		<property name="frmTaskUserDao">
+			<ref bean="FrmTaskUserDaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="FrmTaskUserProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.ithome.autoform.server.FrmTaskUserManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="FrmTaskUserServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYFrmTableTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYFrmTaskUserTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

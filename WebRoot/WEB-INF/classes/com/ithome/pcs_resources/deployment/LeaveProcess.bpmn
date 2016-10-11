@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="LeaveProcess" name="请假流程" isExecutable="true">
+    <startEvent id="START" name="开始"></startEvent>
+    <userTask id="LEAVE_LEAVEUSERINFO" name="请假信息填报"></userTask>
+    <sequenceFlow id="flow1" sourceRef="START" targetRef="LEAVE_LEAVEUSERINFO"></sequenceFlow>
+    <userTask id="LEAVE_DIRECTSUPERVISORAPPROVAL" name="直接主管审批"></userTask>
+    <sequenceFlow id="flow2" sourceRef="LEAVE_LEAVEUSERINFO" targetRef="LEAVE_LEAVEUSERINFO"></sequenceFlow>
+    <userTask id="LEAVE_DEPARTMENTHEADAPPROVAL" name="部门负责人审批"></userTask>
+    <sequenceFlow id="flow3" sourceRef="LEAVE_LEAVEUSERINFO" targetRef="LEAVE_DEPARTMENTHEADAPPROVAL"></sequenceFlow>
+    <userTask id="LEAVE_SICKLEAVE" name="销假信息"></userTask>
+    <sequenceFlow id="flow4" sourceRef="LEAVE_DEPARTMENTHEADAPPROVAL" targetRef="LEAVE_SICKLEAVE"></sequenceFlow>
+    <endEvent id="End" name="结束"></endEvent>
+    <sequenceFlow id="flow6" sourceRef="LEAVE_SICKLEAVE" targetRef="End"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_LeaveProcess">
+    <bpmndi:BPMNPlane bpmnElement="LeaveProcess" id="BPMNPlane_LeaveProcess">
+      <bpmndi:BPMNShape bpmnElement="START" id="BPMNShape_START">
+        <omgdc:Bounds height="35.0" width="35.0" x="36.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LEAVE_LEAVEUSERINFO" id="BPMNShape_LEAVE_LEAVEUSERINFO">
+        <omgdc:Bounds height="55.0" width="105.0" x="116.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LEAVE_DIRECTSUPERVISORAPPROVAL" id="BPMNShape_LEAVE_DIRECTSUPERVISORAPPROVAL">
+        <omgdc:Bounds height="55.0" width="105.0" x="266.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LEAVE_DEPARTMENTHEADAPPROVAL" id="BPMNShape_LEAVE_DEPARTMENTHEADAPPROVAL">
+        <omgdc:Bounds height="55.0" width="105.0" x="411.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LEAVE_SICKLEAVE" id="BPMNShape_LEAVE_SICKLEAVE">
+        <omgdc:Bounds height="55.0" width="105.0" x="571.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="End" id="BPMNShape_End">
+        <omgdc:Bounds height="35.0" width="35.0" x="721.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="71.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="116.0" y="207.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="221.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="221.0" y="207.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="221.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="411.0" y="207.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="516.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="571.0" y="207.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="676.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="721.0" y="207.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

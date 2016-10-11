@@ -1,0 +1,30 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/DoClaimWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="DoClaim_Ajax_code" extends="json-default">
+       <!-- 待签收任务_查询 -->
+		<action name="DoClaimAction_findDoTaskList" method="findDoClaimList"
+			class="com.ithome.pcs.business.web.action.DoClaimAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 签收任务 -->
+		<action name="DoClaimAction_taskClaim" method="taskClaim"
+			class="com.ithome.pcs.business.web.action.DoClaimAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	
+	<package name="DoClaim_Jsp_code" extends="struts-default">
+		<!-- 代签收任务列表 -->
+        <action name="DoClaimManage_ACTION_CONSOLE" >
+			<result>/UI-PCS/pcs/pPcsDoClaimLayout.jsp</result>
+		</action>
+	</package>
+	
+</struts>

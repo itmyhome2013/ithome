@@ -1,0 +1,72 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/ProcessManageWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="PcsManage_Ajax_code" extends="json-default">
+	<!-- 流程部署 start -->
+		<!-- 流程部署_查询 -->
+		<action name="pcsDeploymentList" method="findDeploymentList"
+			class="com.ithome.pcs.business.web.action.ProcessManageAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 流程部署_删除-->
+		<action name="pcsDelProcessDefinition" method="deleteProcessDefinition"
+			class="com.ithome.pcs.business.web.action.ProcessManageAction">
+			<result type="json">
+			<param name="excludeProperties" >processDefinitionEntity</param >
+			</result>
+		</action>
+   <!-- 流程部署 end -->
+		
+		
+	<!-- 流程定义管理  start-->
+	<!-- 流程定义_查询 -->
+	  <action name="pcsDefineList" method="findProcessDefinitionList"
+			class="com.ithome.pcs.business.web.action.ProcessManageAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+	 </action>
+	 <!-- 流程图片_查询 -->
+	<action name="pcsDefineImage" method="findImageInputStream"
+		class="com.ithome.pcs.business.web.action.ProcessManageAction">
+	</action>
+	<!-- 转换为流程模型 -->
+	<action name="pcsConvertToModel" method="saveConvertToModel"
+			class="com.ithome.pcs.business.web.action.ProcessManageAction">
+			<result type="json">
+			<param name="excludeProperties" >processDefinitionEntity</param >
+			</result>
+		</action>
+	<!-- 流程定义管理  end-->		
+		
+	</package>
+	
+	
+	<package name="PcsManage_Jsp_code" extends="struts-default">
+	
+	<!-- 流程定义管理  start-->
+		<action name="PcsDefineManage_ACTION_CONSOLE" >
+			<result>/UI-PCS/pcs/pPcsDefineManageLayout.jsp</result>
+		</action>
+     <!--流程定义管理  end  -->
+	
+		
+		
+		<!-- 流程部署管理  start-->
+		<action name="PcsDeployManage_ACTION_CONSOLE">
+			<result>/UI-PCS/pcs/pPcsDeployManageLayout.jsp</result>
+		</action>
+		 <!-- 流程部署 -->
+		<action name="PcsDeployProcess" method="saveDeployProcess" 
+		        class="com.ithome.pcs.business.web.action.ProcessManageAction">
+		</action>
+		 <!--流程部署页面  end  -->
+		
+	</package>
+</struts>

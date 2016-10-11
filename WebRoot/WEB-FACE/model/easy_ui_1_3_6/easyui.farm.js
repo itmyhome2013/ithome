@@ -332,12 +332,15 @@ $.extend( {
 		 * @return id的逗号分隔的字符串序列
 		 * @demo $.farm.getCheckedIds(grid)
 		 */
-		getCheckedIds : function(grid) {
+		getCheckedIds : function(grid,idstr) {
 			var selectedArray = $(grid).datagrid('getSelections');
 			var ids;
 			$(selectedArray).each(function(index, obj) {
+				if (!idstr) {
+					idstr = "ID";
+				}
 				if (index == 0) {
-					ids = obj.ID;
+					ids = obj[idstr];
 				} else {
 					ids = ids + ',' + obj.ID;
 				}

@@ -1,0 +1,91 @@
+package  com.ithome.pcs.business.dao;
+
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
+
+import com.ithome.pcs.comm.entity.ActExApproval;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.farm.core.sql.query.DBRule;
+import com.farm.core.sql.query.DataQuery;
+import com.farm.core.sql.result.DataResult;
+import com.farm.core.sql.utils.HibernateSQLTools;
+
+/**实体管理
+ * @author MAC_wd
+ * 
+ */
+public class ActExApprovalDao implements  ActExApprovalDaoInter {
+	private SessionFactory sessionFatory;
+	private HibernateSQLTools<ActExApproval> sqlTools ;
+
+	public void deleteEntity(ActExApproval entity) {
+		Session session=sessionFatory.getCurrentSession();
+		session.delete(entity);
+	}
+	public int getAllListNum(){
+		Session session= sessionFatory.getCurrentSession();
+		SQLQuery sqlquery= session.createSQLQuery("select count(*) from act_ex_approval");
+		BigInteger num=(BigInteger)sqlquery.list().get(0);
+		return num.intValue() ;
+	}
+	public ActExApproval getEntity(String id) {
+		Session session= sessionFatory.getCurrentSession();
+		return (ActExApproval)session.get(ActExApproval.class, id);
+	}
+	public ActExApproval insertEntity(ActExApproval entity) {
+		Session session= sessionFatory.getCurrentSession();
+		session.save(entity);
+		return entity;
+	}
+	public void editEntity(ActExApproval entity) {
+		Session session= sessionFatory.getCurrentSession();
+		session.update(entity);
+	}
+	
+	@Override
+	public Session getSession() {
+		return sessionFatory.getCurrentSession();
+	}
+	public DataResult runSqlQuery(DataQuery query){
+		try {
+			return query.search(sessionFatory.getCurrentSession());
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	@Override
+	public void deleteEntitys(List<DBRule> rules) {
+		sqlTools.deleteSqlFromFunction(sessionFatory.getCurrentSession(), rules);
+	}
+
+	@Override
+	public List<ActExApproval> selectEntitys(List<DBRule> rules) {
+		return sqlTools.selectSqlFromFunction(
+				sessionFatory.getCurrentSession(), rules);
+	}
+
+	@Override
+	public void updataEntitys(Map<String, Object> values, List<DBRule> rules) {
+		sqlTools.updataSqlFromFunction(sessionFatory.getCurrentSession(),
+				values, rules);
+	}
+	
+	
+	public SessionFactory getSessionFatory() {
+		return sessionFatory;
+	}
+
+	public void setSessionFatory(SessionFactory sessionFatory) {
+		this.sessionFatory = sessionFatory;
+	}
+	public HibernateSQLTools<ActExApproval> getSqlTools() {
+		return sqlTools;
+	}
+	public void setSqlTools(HibernateSQLTools<ActExApproval> sqlTools) {
+		this.sqlTools = sqlTools;
+	}
+}

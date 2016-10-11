@@ -62,10 +62,20 @@ public class FarmManager implements FarmBaseManagerInter {
 	}
 
 	@Override
+	public List<Map<String, Object>> findWordList() {
+		return getDictionaryFace().findWordList();
+	}
+	
+	@Override
 	public Map<String, String> findDicTitleForIndex(String index) {
 		return getDictionaryFace().findTitleForIndex(index);
 	}
-
+	
+	@Override
+	public List<Map<String, Object>> findOptionFromTable(String tableName,String fieldKey,String fieldName,String title) {
+		return getDictionaryFace().findOptionFromTable(tableName,fieldKey,fieldName,title);
+	}
+	
 	@Override
 	public String getConfigValue(String key) {
 		return getParameterFace().getConfigValue(key);

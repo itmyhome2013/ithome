@@ -5,10 +5,12 @@ package com.ithome.autoform.domain;
  *
  */
 public class CompletedForm {
-	private String processid; // 外键（ACT_EX_PROCESS）
+	private String completedformid;
+	private String dataid;
+	private String processid; // 外键（ACT_EX_PROCESS）test
 	private String pcsfromcfgid; // 外键（ACT_EX_PCSFROMCFG）
 	private String informant; // 填报人
-	private String fromtablename; // 表单对应的表名
+	private String formtablename; // 表单对应的表名
 
 	public String getProcessid() {
 		return processid;
@@ -34,12 +36,29 @@ public class CompletedForm {
 		this.informant = informant;
 	}
 
-	public String getFromtablename() {
-		return fromtablename;
+	public String getFormtablename() {
+		return formtablename;
 	}
 
-	public void setFromtablename(String fromtablename) {
-		this.fromtablename = fromtablename;
+	public void setFormtablename(String formtablename) {
+		this.formtablename = formtablename;
 	}
+
+	public String getCompletedformid() {
+		return completedformid;
+	}
+
+	public void setCompletedformid(String completedformid) {
+		this.completedformid = completedformid;
+	}
+
+	public String getDataid() {
+		return dataid;
+	}
+
+	public void setDataid(String dataid) {
+		this.dataid = dataid;
+	}
+	
 
 }

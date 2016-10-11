@@ -61,6 +61,33 @@
 	</filter-mapping>
 	<!--  struts配置结束 -->
 	
+	<!-- Activiti 开始 -->
+	<servlet>
+	    <servlet-name>ExplorerRestletServlet</servlet-name>
+	    <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+	    <init-param>
+	      <param-name>org.restlet.application</param-name>
+	      <param-value>com.ithome.pcs.tools.ExplorerRestApplication</param-value>
+	    </init-param>
+	</servlet>
+	<servlet>
+	    <servlet-name>RestletServlet</servlet-name>
+	    <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+	    <init-param>
+	      <param-name>org.restlet.application</param-name>
+	      <param-value>org.activiti.rest.service.application.ActivitiRestServicesApplication</param-value>
+	    </init-param>
+	 </servlet>
+	 <servlet-mapping>
+	    <servlet-name>ExplorerRestletServlet</servlet-name>
+	    <url-pattern>/modeler/service/*</url-pattern>
+	 </servlet-mapping>
+	 <servlet-mapping>
+	    <servlet-name>RestletServlet</servlet-name>
+	    <url-pattern>/modeler/rest/*</url-pattern>
+	 </servlet-mapping>
+  	<!-- Activiti 结束 -->
+	
 	<!-- 初始化系统参数 -->
 	<servlet>
 		<servlet-name>SysInit</servlet-name>

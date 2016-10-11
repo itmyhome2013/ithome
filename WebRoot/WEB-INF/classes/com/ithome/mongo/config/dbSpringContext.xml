@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tool="http://www.springframework.org/schema/tool"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	                    http://www.springframework.org/schema/context
+	                    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	                    http://www.springframework.org/schema/tx
+	                    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	                    http://www.springframework.org/schema/aop 
+	                    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	                    http://www.springframework.org/schema/tool	                    
+	                    http://www.springframework.org/schema/tool/spring-tool-4.0.xsd
+	                 	http://www.springframework.org/schema/mvc                 
+	                    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	                    http://www.springframework.org/schema/data/mongo
+	                    http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+	
+	<!-- 
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath:mongodb.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+    -->                 
+                          
+    <!-- 定义mongo对象，对应的是mongodb官方jar包中的Mongo，replica-set设置集群副本的ip地址和端口 -->
+	<mongo:mongo id="mongo" host="127.0.0.1" port="27017">
+		<!-- 一些连接属性的设置 --> 
+		<mongo:options
+			connections-per-host="8"
+			threads-allowed-to-block-for-connection-multiplier="4"
+			connect-timeout="1000"
+			max-wait-time="1500"
+			auto-connect-retry="true"
+			socket-keep-alive="true"
+			socket-timeout="1500"
+			slave-ok="true"
+			write-number="1"
+			write-timeout="0"
+			write-fsync="true" />
+	</mongo:mongo>
+  
+    <!-- mongo的工厂,通过它来取得mongo实例,dbname为mongodb的数据库名,没有的话会自动创建 -->
+	<mongo:db-factory id="mongoDbFactory" dbname="mydb" mongo-ref="mongo" />
+  
+    
+        
+    <!-- mongodb的主要操作对象,所有对mongodb的增删改查的操作都是通过它完成 -->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg index="0" ref="mongoDbFactory"/>   
+	</bean>
+	
+	
+	<bean id="personDao" class="com.ithome.mongo.dao.impl.PersonDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	
+	<bean id="personProxyId" class="com.ithome.mongo.server.impl.PersonManagerImpl">
+		<property name="personDao" ref="personDao" />
+	</bean>
+	
+	<bean id="bookDao" class="com.ithome.mongo.dao.impl.BookDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	
+	<bean id="bookProxyId" class="com.ithome.mongo.server.impl.BookManagerImpl">
+		<property name="bookDao" ref="bookDao" />
+	</bean>
+
+</beans>

@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/autoform/web/conf/FrmFieldRelWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="FrmFieldRel_Ajax_code" extends="json-default">
+		<!-- 实体管理查询 -->
+		<action name="FrmFieldRelqueryAll" method="queryall"
+			class="com.ithome.autoform.web.action.ActionFrmFieldRelQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 实体管理增加 -->
+		<action name="FrmFieldReladdCommit" method="addSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldRelQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理删除 -->
+		<action name="FrmFieldReldeleteCommit" method="delSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldRelQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理修改 -->
+		<action name="FrmFieldReleditCommit" method="editSubmit"
+			class="com.ithome.autoform.web.action.ActionFrmFieldRelQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FrmFieldRel_Jsp_code" extends="struts-default">
+		<!-- 实体管理详细【修改、浏览】 -->
+		<action name="FrmFieldRelshow" method="view"
+			class="com.ithome.autoform.web.action.ActionFrmFieldRelQuery">
+			<result>/UI/autoform/pFrmFieldRelEntity.jsp</result>
+		</action>
+		<!-- html加载实体管理控制台 -->
+		<action name="FrmFieldRel_ACTION_CONSOLE">
+			<result>/UI/autoform/pFrmFieldRelLayout.jsp</result>
+		</action>
+		<!-- ajax加载实体管理选择页面 -->
+		<action name="FrmFieldRel_ACTION_ALERT" >
+			<result>/UI/autoform/pFrmFieldRelGrid.jsp</result>
+		</action>
+	</package>
+</struts>

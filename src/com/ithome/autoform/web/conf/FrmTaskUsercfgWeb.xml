@@ -1,0 +1,81 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 任务节点配置信息 -->
+	<package name="FrmTaskUser_Ajax_code" extends="json-default">
+	
+	
+		<action name="FrmTaskUserqueryAll" method="queryall"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	
+		<!-- 设置人员 保存 -->
+		<action name="FrmTaskUsereditCommit" method="editUsersSubmit"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 设置角色 保存 -->
+		<action name="FrmTaskRoleeditCommit" method="editRoleSubmit"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result type="json"></result>
+		</action>
+	
+		
+		<action name="FrmQueryAllUser" method="queryAllUser"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<action name="FrmQueryAllGroup" method="queryAllGroup"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result type="json"></result>
+		</action>
+		
+		<action name="FrmQueryAllRole" method="queryAllRole"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	
+	</package>
+	<package name="FrmTaskUser_Jsp_code" extends="struts-default">
+
+		<action name="FrmTaskUsershow" method="view"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result>/autoform/pFrmTaskUserEntity.jsp</result>
+		</action>
+		
+		<!-- html加载 任务节点信息控制台 -->
+		<action name="FrmTaskUser_ACTION_CONSOLE">
+			<result>/autoform/pFrmTaskUserLayout.jsp</result>
+		</action>
+		
+		<!-- 加载设置人员控制台 -->
+		<action name="FrmTaskUser_USER_CONSOLE" method="forSend"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result>/autoform/pFrmTaskUserSetUp.jsp</result>
+		</action>
+		
+		<!-- 加载设置角色控制台 -->
+		<action name="FrmTaskUser_ROLE_CONSOLE" method="forSend"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result>/autoform/pFrmTaskRoleSetUp.jsp</result>
+		</action>
+		
+		<!-- 加载配置表单控制台 -->
+		<action name="FrmTaskUser_CONFIGFORM_CONSOLE" method="configForm"
+			class="com.ithome.autoform.web.action.ActionTaskuserFormQuery">
+			<result>/autoform/pFrmConfigFormLayout.jsp</result>
+		</action>
+		
+
+	</package>
+</struts>

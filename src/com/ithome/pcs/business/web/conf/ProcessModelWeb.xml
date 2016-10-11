@@ -1,0 +1,60 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/ProcessModelWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="PcsModelManage_Ajax_code" extends="json-default">
+		<!-- 流程模型管理  start-->
+		   <!-- 流程模型_查询 -->
+			<action name="pcsModelList" method="findProcessModelList"
+				class="com.ithome.pcs.business.web.action.ProcessModelAction">
+				<result type="json">
+					<param name="root">jsonResult</param>
+				</result>
+			</action>
+			<!-- 添加模型 -->
+			<action name="pcssaveProcessModel" method="saveProcessModel"
+				class="com.ithome.pcs.business.web.action.ProcessModelAction">
+				<result type="json">
+				<param name="excludeProperties" >entity</param >
+				</result>
+			</action>
+			<!-- 流程模型_删除-->
+			<action name="pcsDelModel" method="deleteModel"
+				class="com.ithome.pcs.business.web.action.ProcessModelAction">
+				<result type="json">
+				<param name="excludeProperties" >entity</param >
+				</result>
+			</action>
+			<!-- 流程模型_导出-->
+			<action name="pcsExportModel" method="exportModel"
+				class="com.ithome.pcs.business.web.action.ProcessModelAction">
+			</action>
+			<!-- 流程模型_部署-->
+			<action name="pcsDeployModel" method="deployModel"
+				class="com.ithome.pcs.business.web.action.ProcessModelAction">
+				<result type="json">
+				<param name="excludeProperties" >entity</param >
+				</result>
+			</action>
+		<!-- 流程模型管理  end-->
+		
+	</package>
+	
+	
+	<package name="PcsModelManage_Jsp_code" extends="struts-default">
+	
+	<!-- 流程模型管理  start-->
+		<action name="PcsModelManage_ACTION_CONSOLE" >
+			<result>/UI-PCS/pcs/pPcsModelManageLayout.jsp</result>
+		</action>
+		<!-- html加载实体管理控制台 -->
+		<action name="PcsModelEntity_ACTION_CONSOLE" method="view"
+		    class="com.ithome.pcs.business.web.action.ProcessModelAction">
+			<result>/UI-PCS/pcs/pPcsModelEntity.jsp</result>
+		</action>
+     <!--流程模型管理  end  -->
+
+	</package>
+</struts>

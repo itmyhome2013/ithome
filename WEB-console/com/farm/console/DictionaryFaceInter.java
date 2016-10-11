@@ -24,6 +24,12 @@ interface DictionaryFaceInter {
 	public List<Map<String, Object>> findTitleForIndeHasSort(String index);
 	
 	/**
+	 * 查询Word文档列表
+	 * @return
+	 */
+	public List<Map<String, Object>> findWordList();
+	
+	/**
 	 * 将所有数据字典加载到内存中
 	 */
 	public boolean loadAllDicToCache() ;
@@ -33,4 +39,10 @@ interface DictionaryFaceInter {
 	 * @return 返回实体对象
 	 */
 	public AloneDictionaryType getTypeByTypeId(String typeId);
+	
+	/**
+	 * 通过表名(视图)查询
+	 * @return
+	 */
+	public List<Map<String, Object>> findOptionFromTable(String tableName,String fieldKey,String fieldName,String title);
 }

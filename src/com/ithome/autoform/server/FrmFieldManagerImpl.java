@@ -54,7 +54,7 @@ public class FrmFieldManagerImpl implements FrmFieldManagerInter{
 		}
 		
 		String dataid = TableTools.insertFrmForm(tableName,map);
-		//TableTools.insertCompletedForm(dataid,completedForm);
+		TableTools.insertCompletedForm(dataid,completedForm);
 		
 		return null;
 	}

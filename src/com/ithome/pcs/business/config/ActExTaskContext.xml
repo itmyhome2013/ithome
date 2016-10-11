@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      实体管理<import resource="classpath:org/bkgd/pcs/business/config/ActExTaskContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 实体管理Dao实现 -->
+	<bean id="actExTask_DaoId"
+		class="com.ithome.pcs.business.dao.ActExTaskDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="actExTask_ServerId"
+		class="com.ithome.pcs.business.server.ActExTaskManagerImpl">
+		<property name="actExTaskDao">
+			<ref bean="actExTask_DaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="actExTask_ProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.ithome.pcs.business.server.ActExTaskManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="actExTask_ServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="ACTEXAPPROVAL_INFOTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="ACTEXAPPROVAL_INFOTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

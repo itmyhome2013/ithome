@@ -25,7 +25,7 @@
 					<input type="hidden" name="processid" value="${processid }" />
 					<input type="hidden" name="pcsfromcfgid" value="${pcsfromcfgid }" />
 					<input type="hidden" name="informant" value="${informant }" />
-					<input type="hidden" name="fromtablename" value="${fromtablename }" />
+					<input type="hidden" name="formtablename" value="${formtablename }" />
 									
 					<table class="editTable">
 						

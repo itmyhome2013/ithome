@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="EventProcess" name="网络事件测试流程" isExecutable="true">
+    <startEvent id="start" name="开始"></startEvent>
+    <userTask id="EventReport" name="事件上报" activiti:assignee="${inputUser}"></userTask>
+    <sequenceFlow id="sid-EC74346A-0DE5-43AB-8402-6BCE4462068F" sourceRef="start" targetRef="EventReport"></sequenceFlow>
+    <userTask id="CommunityApproval" name="社区审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.bkgd.pcs.handler.CreateTaskUserHandler"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="StreetApproval" name="街道审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.bkgd.pcs.handler.CreateTaskUserHandler"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="ZoneApproval" name="区审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.bkgd.pcs.handler.CreateTaskUserHandler"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <endEvent id="end" name="结束"></endEvent>
+    <sequenceFlow id="flow7" sourceRef="ZoneApproval" targetRef="end"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="EventReport" targetRef="CommunityApproval"></sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="CommunityApproval" targetRef="StreetApproval"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="StreetApproval" targetRef="ZoneApproval"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_EventProcess">
+    <bpmndi:BPMNPlane bpmnElement="EventProcess" id="BPMNPlane_EventProcess">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="40.0" y="165.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="EventReport" id="BPMNShape_EventReport">
+        <omgdc:Bounds height="55.0" width="105.0" x="105.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="CommunityApproval" id="BPMNShape_CommunityApproval">
+        <omgdc:Bounds height="55.0" width="105.0" x="286.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="StreetApproval" id="BPMNShape_StreetApproval">
+        <omgdc:Bounds height="55.0" width="105.0" x="450.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ZoneApproval" id="BPMNShape_ZoneApproval">
+        <omgdc:Bounds height="55.0" width="105.0" x="610.0" y="155.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="35.0" width="35.0" x="750.0" y="165.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-EC74346A-0DE5-43AB-8402-6BCE4462068F" id="BPMNEdge_sid-EC74346A-0DE5-43AB-8402-6BCE4462068F">
+        <omgdi:waypoint x="75.0" y="182.0"></omgdi:waypoint>
+        <omgdi:waypoint x="105.0" y="182.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="715.0" y="182.0"></omgdi:waypoint>
+        <omgdi:waypoint x="750.0" y="182.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="210.0" y="182.0"></omgdi:waypoint>
+        <omgdi:waypoint x="286.0" y="182.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="391.0" y="182.0"></omgdi:waypoint>
+        <omgdi:waypoint x="450.0" y="182.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="555.0" y="182.0"></omgdi:waypoint>
+        <omgdi:waypoint x="610.0" y="182.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

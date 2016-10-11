@@ -311,7 +311,7 @@ public class TableTools {
 	 */
 	public static void insertCompletedForm(String dataid,CompletedForm form){
 		
-		String sql = "insert into ACT_EX_COMPLETEDFORM(completedformid,processid,pcsfromcfgid,informant,infordate,dataid,fromtablename,lastupdatedate) " +
+		String sql = "insert into ACT_EX_COMPLETEDFORM(completedformid,processid,pcsfromcfgid,informant,infordate,dataid,formtablename,lastupdatedate) " +
 				"values(?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement pst = null;
@@ -323,7 +323,7 @@ public class TableTools {
 			pst.setString(4, form.getInformant());
 			pst.setString(5, TimeTool.getFormatTimeDate14());
 			pst.setString(6, dataid);
-			pst.setString(7, form.getFromtablename());
+			pst.setString(7, form.getFormtablename());
 			pst.setString(8, "");
 			pst.executeUpdate();
 		} catch (SQLException e) {

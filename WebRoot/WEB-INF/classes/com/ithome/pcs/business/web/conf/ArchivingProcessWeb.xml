@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/ArchivingProcessWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="ArchivingProcess_Ajax_code" extends="json-default">
+       <!-- 待办理任务_查询 -->
+		<action name="ArchivingProcessAction_findArchivingProcessList" method="findArchivingProcessList"
+			class="com.ithome.pcs.business.web.action.ArchivingProcessAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	</package>
+	
+	
+	<package name="ArchivingProcess_Jsp_code" extends="struts-default">
+	    <!-- 我的流程列表 -->
+        <action name="ArchivingProcessManage_ACTION_CONSOLE" >
+			<result>/UI-PCS/pcs/pPcsArchivingProcessLayout.jsp</result>
+		</action>
+	</package>
+	
+</struts>

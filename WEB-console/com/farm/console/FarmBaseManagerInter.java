@@ -49,6 +49,19 @@ public interface FarmBaseManagerInter {
 	 * @return String[类型,类型title,sort]
 	 */
 	public List<Map<String, Object>> findDicTitleForIndeHasSort(String index);
+	
+	/**
+	 * 查询Word文档列表
+	 * @return
+	 */
+	public List<Map<String, Object>> findWordList();
+	
+	/**
+	 * 通过表名(视图)查询
+	 * @return
+	 */
+	public List<Map<String, Object>> findOptionFromTable(String tableName,String fieldKey,String fieldName,String title);
+	
 	/**
 	 * 设置系统绝对路径
 	 * 

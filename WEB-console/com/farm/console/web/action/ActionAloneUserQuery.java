@@ -63,8 +63,8 @@ public class ActionAloneUserQuery extends WebSupport {
 			query = DataQuery
 					.init(
 							query,
-							"ALONE_USER a  left join ALONE_ORGANIZATION_USER e on e.USERID=a.id and e.type='1' left join ALONE_ORGANIZATION f on f.id=e.ORGANIZATIONID",
-							"a.id as id,a.name,a.LOGINTIME,a.loginname,a.type,f.name as orgname,a.state,a.utime");
+							"ALONE_USER a  left join ALONE_ORGANIZATION_USER e on e.USERID=a.id and e.type='1' left join ALONE_ORGANIZATION f on f.id=e.ORGANIZATIONID left join (SELECT b.id as userid, wm_concat(c.name) as rolename FROM alone_user_rolegroup a left join alone_user b  on a.userid = b.id left join alone_rolegroup c on a.rolegroup = c.id  group by b.id ) r on r.userid = a.id ",
+							"a.id as id,a.name,a.LOGINTIME,a.loginname,a.type,f.name as orgname,r.rolename as ROLENAME,a.state,a.utime");
 			DBRule treeRule = query.getAndRemoveRule("PARENTID");
 			if (treeRule == null || treeRule.getValue().equals("NONE")) {
 				// 清除PARENTID=NONE的条件这里为了中和一个页面BUG:王东20121203

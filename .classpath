@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/commons/commons-attributes-api.jar"/>
 	<classpathentry kind="lib" path="lib/commons/commons-attributes-compiler.jar"/>
@@ -88,6 +89,53 @@
 	<classpathentry kind="src" path="BS-core"/>
 	<classpathentry kind="src" path="BKGD-CLIENT"/>
 	<classpathentry kind="lib" path="lib/farmCore141010.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Sun JDK 1.6.0_13"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-bpmn-converter-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-bpmn-layout-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-bpmn-model-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-camel-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-cdi.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-cdi-sources.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-common-rest-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-cxf-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-diagram-rest-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-engine-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-explorer-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-json-converter-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-modeler-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-modeler-5.17.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-mule-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-osgi-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-rest-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-simple-workflow-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/activiti-spring-5.13.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-anim-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-awt-util-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-bridge-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-codec-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-css-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-dom-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-ext-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-gvt-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-js-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-parser-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-script-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-svg-dom-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-svggen-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-transcoder-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-util-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/batik-xml-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/jackson-core-asl-1.9.9.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/jackson-mapper-asl-1.9.7.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/javaGeom-0.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/joda-time-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/mybatis-3.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/org.restlet.ext.fileupload-2.0.15.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/org.restlet.ext.jackson-2.0.15.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/org.restlet.ext.servlet-2.0.15.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/org.restlet-2.0.15.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/xml-apis-1.3.04.jar"/>
+	<classpathentry kind="lib" path="lib/activiti/xml-apis-ext-1.3.04.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_43"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

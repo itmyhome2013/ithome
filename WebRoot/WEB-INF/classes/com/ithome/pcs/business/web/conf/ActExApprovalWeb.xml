@@ -1,0 +1,48 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/ActExApprovalWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="actExApproval_Ajax_code" extends="json-default">
+       <!-- 查询可驳回的节点 -->
+		<action name="ActExApproval_BackactivityList" method="findBackactivityId"
+			class="com.ithome.pcs.business.web.action.ActExApprovalAction">
+			<result type="json">
+				<param name="root">backactivitylist</param>
+			</result>
+		</action>
+		 <!-- 审批列表查询 -->
+		<action name="ActExApproval_findApprovalList" method="findApprovalList"
+			class="com.ithome.pcs.business.web.action.ActExApprovalAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 保存事件审批信息并提交任务 -->
+		<action name="ActExApproval_saveApprovalandTaskcompleteaddCommit" method="saveApprovalandTaskcomplete"
+			class="com.ithome.pcs.business.web.action.ActExApprovalAction">
+			<result type="json"></result>
+		</action>
+		<!-- 上报前检查是否已填了必填的表单 -->
+		<action name="ActExApproval_reportVerify" method="reportVerify"
+			class="com.ithome.pcs.business.web.action.ActExApprovalAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	
+	<package name="actExApproval_Jsp_code" extends="struts-default">
+	<!-- 审批页面 -->
+	<action name="ActExApproval_ApprovalInfoshow" method="view"
+			class="com.ithome.pcs.business.web.action.ActExApprovalAction">
+			<result>/UI-PCS/pcs/pPcsActExApprovalEntity.jsp</result>
+	</action>
+	<!-- html加载实体管理控制台 -->
+	<action name="ActExApproval_ACTION_CONSOLE" method="forSend"
+	        class="com.ithome.pcs.business.web.action.ActExApprovalAction">
+		<result>/UI-PCS/pcs/pPcsActExApprovaLayout.jsp</result>
+	</action>
+	</package>
+	
+</struts>

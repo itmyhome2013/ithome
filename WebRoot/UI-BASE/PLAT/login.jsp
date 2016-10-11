@@ -147,8 +147,8 @@ h1{ font-size: 36px;}
 							<td colspan="3">
 								<h3 id="header" class="bottomBorder form-signin">
 									登录
-									<font color="green" style="font-size: 18px;">西城区文物管理处</font>
-									可移动文物信息管理系统
+									<font color="green" style="font-size: 18px;">EasyPlat</font>
+									信息管理系统
 								</h3>
 								<!-- 
 								<p id="loginDescription">
@@ -163,7 +163,7 @@ h1{ font-size: 36px;}
 						<tr>
 							<td>
 								<div class="form-group has-feedback has-feedback-left">
-									<input name="name" type="text" class="form-control valid" placeholder="Username" aria-invalid="false">
+									<input name="name" type="text" class="form-control valid" placeholder="Username" aria-invalid="false" value="sysadmin">
 									<i class="icon-user form-control-feedback"></i>
 								</div>
 							</td>
@@ -171,7 +171,7 @@ h1{ font-size: 36px;}
 						<tr>
 							<td>
 								<div class="form-group has-feedback has-feedback-left">
-									<input name="password" type="password" class="form-control" placeholder="Password">
+									<input name="password" type="password" class="form-control" placeholder="Password" value="111111">
 									<i class="icon-key form-control-feedback"></i>
 								</div>
 							</td>

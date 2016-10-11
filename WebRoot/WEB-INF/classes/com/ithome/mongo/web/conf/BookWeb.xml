@@ -1,0 +1,40 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      人口基础信息<include file="org/bkgd/popu/web/conf/PopuCitizenInfoWeb.xml"></include> -->
+<struts>
+	<!-- Mongo -->
+	<package name="Book_Ajax_code" extends="json-default">
+	
+		<!-- 根据人查找书籍信息 -->
+		<action name="PersonBookqueryAll" method="personBookqueryAll"
+			class="com.ithome.mongo.web.action.ActionBookQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 新增 -->
+		<action name="BookAddCommit" method="addSubmit"
+			class="com.ithome.mongo.web.action.ActionBookQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 删除 -->
+		<action name="BookDeleteCommit" method="delSubmit"
+			class="com.ithome.mongo.web.action.ActionBookQuery">
+			<result type="json"></result>
+		</action>
+		
+		
+	</package>
+	
+	<package name="Book_Jsp_code" extends="struts-default">
+	
+		<action name="Bookshow" method="view"
+			class="com.ithome.mongo.web.action.ActionBookQuery">
+			<result>/mongo/bookEntity.jsp</result>
+		</action>
+		
+	</package>
+</struts>

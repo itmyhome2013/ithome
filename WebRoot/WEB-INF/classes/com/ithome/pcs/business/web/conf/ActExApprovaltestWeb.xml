@@ -1,0 +1,29 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      实体管理<include file="org/bkgd/pcs/business/web/conf/ActExApprovaltestWeb.xml"></include> -->
+<struts>
+	<!-- 实体管理 -->
+	<package name="actExApprovaltest_Ajax_code" extends="json-default">
+       <!-- 实体管理增加 -->
+		<action name="ActExApprovaltestAddCommit" method="addSubmit"
+			class="com.ithome.pcs.business.web.action.ActExApprovaltestAction">
+			<result type="json"></result>
+		</action>
+		<!-- 实体管理修改 -->
+		<action name="ActExApprovaltestEditCommit" method="editSubmit"
+			class="com.ithome.pcs.business.web.action.ActExApprovaltestAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	
+	<package name="actExApprovaltest_Jsp_code" extends="struts-default">
+	   <!-- 实体管理详细【修改、浏览】 -->
+		<action name="ActExApprovaltestshow" method="view"
+			class="com.ithome.pcs.business.web.action.ActExApprovaltestAction">
+			<result>/UI-PCS/pcs/pPcsActExApprovaltestEntity.jsp</result>
+		</action>
+	</package>
+	
+</struts>

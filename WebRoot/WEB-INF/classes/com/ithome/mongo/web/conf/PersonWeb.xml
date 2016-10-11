@@ -1,0 +1,45 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      人口基础信息<include file="org/bkgd/popu/web/conf/PopuCitizenInfoWeb.xml"></include> -->
+<struts>
+	<!-- Mongo -->
+	<package name="Person_Ajax_code" extends="json-default">
+		
+		<!-- 查询 -->
+		<action name="PersonQueryAll" method="queryall"
+			class="com.ithome.mongo.web.action.ActionPersonQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 新增 -->
+		<action name="PersonEditCommit" method="addSubmit"
+			class="com.ithome.mongo.web.action.ActionPersonQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 删除 -->
+		<action name="PersonDeleteCommit" method="delSubmit"
+			class="com.ithome.mongo.web.action.ActionPersonQuery">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+	
+	<package name="Person_Jsp_code" extends="struts-default">
+	
+		<!-- html加载Mongo信息控制台 -->
+		<action name="Mongo_ACTION_CONSOLE">
+			<result>/mongo/personLayout.jsp</result>
+		</action>
+		
+		<!-- 【修改、浏览】 -->
+		<action name="PersonAllshow" method="view"
+			class="com.ithome.mongo.web.action.ActionPersonQuery">
+			<result>/mongo/personEntity.jsp</result>
+		</action>
+		
+	</package>
+</struts>

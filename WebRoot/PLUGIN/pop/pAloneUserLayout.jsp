@@ -37,6 +37,9 @@
 						<th field="ID" data-options="sortable:true" width="140">
 							id
 						</th>
+						<th field="ROLENAME" data-options="sortable:true" width="80">
+							管理角色
+						</th>
 						<th field="ORGNAME" data-options="sortable:true" width="80">
 							组织机构
 						</th>

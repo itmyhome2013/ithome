@@ -9,6 +9,7 @@ import com.ithome.autoform.domain.FrmField;
 import com.ithome.autoform.domain.FrmTable;
 import com.ithome.autoform.server.FrmFieldManagerInter;
 import com.ithome.autoform.server.FrmTableManagerInter;
+import com.ithome.pcs.utils.UUIDGenerator;
 
 import com.farm.web.easyui.EasyUiUtils;
 
@@ -57,7 +58,7 @@ public class ActionFrmFieldQuery extends WebSupport implements ParameterAware {
 	private String processid; //外键（ACT_EX_PROCESS）
 	private String pcsfromcfgid; //外键（ACT_EX_PCSFROMCFG）
 	private String informant; //填报人
-	private String fromtablename;  //表单对应的表名
+	private String formtablename;  //表单对应的表名
 	
 	private CompletedForm completedForm;
 	
@@ -127,20 +128,48 @@ public class ActionFrmFieldQuery extends WebSupport implements ParameterAware {
 		return SUCCESS;
 	}
 	
+	public String formTableSubmit(){
+
+		try {
+			fieldParameter = URLDecoder.decode(fieldParameter,"utf-8");  //解码  
+			Map<String,String> map = toHashMap(fieldParameter);
+			
+			if(pageset.getPageType() == 1){
+				entity = aloneIMP.insertFrmOperateFieldEntity(map, completedForm,getCurrentUser()); //新增	
+			}else if(pageset.getPageType() == 2){
+				entity = aloneIMP.editFrmOperateFieldEntity(map, completedformid,getCurrentUser()); //修改
+			}
+			
+			pageset = new PageSet(PageType.UPDATE, CommitType.TRUE);
+		} catch (Exception e) {
+			pageset=PageSets.initPageSet(pageset, PageType.UPDATE, CommitType.FALSE, e);
+		}
+	
+		return SUCCESS;
+	}
+	
+	/**
+	 * 填写表单
+	 * @return
+	 */
+	public String fillForm(){
+		return SUCCESS;
+	}
+	
 	public String editOperateSubmit(){
 		try {
 			fieldParameter = URLDecoder.decode(fieldParameter,"utf-8");  //解码  
 			Map<String,String> map = toHashMap(fieldParameter);
-			for(Map.Entry<String, String> entry : map.entrySet()){
+			/*for(Map.Entry<String, String> entry : map.entrySet()){
 			    System.out.println(entry.getKey()+" : "+entry.getValue());
-			}
+			}*/
 			//if("".equals(map.get("id")) || map.get("id") == null){
 			if(pageset.getPageType() == 1){
-				completedForm = new CompletedForm();
+				/*completedForm = new CompletedForm();
 				completedForm.setProcessid(processid);
 				completedForm.setPcsfromcfgid(pcsfromcfgid);
 				completedForm.setInformant(informant);
-				completedForm.setFromtablename(fromtablename);
+				completedForm.setFromtablename(fromtablename);*/
 				entity = aloneIMP.insertFrmOperateFieldEntity(map, completedForm,getCurrentUser()); //新增	
 			}else if(pageset.getPageType() == 2){
 				entity = aloneIMP.editFrmOperateFieldEntity(map, completedformid,getCurrentUser()); //修改
@@ -164,8 +193,7 @@ public class ActionFrmFieldQuery extends WebSupport implements ParameterAware {
 			String value = (String) jsonObject.get(key);
 			
 			//过滤以下字段 
-			if(!"processid".equals(key) && !"pcsfromcfgid".equals(key) && !"informant".equals(key) && 
-					!"fromtablename".equals(key) && !"completedformid".equals(key) && !"dataid".equals(key) && !"pageset.pageType".equals(key)){
+			if(!(key.startsWith("completedForm")) && !"pageset.pageType".equals(key) && !(key.startsWith("comm"))){
 				data.put(key, value);
 			}
 		}
@@ -235,6 +263,42 @@ public class ActionFrmFieldQuery extends WebSupport implements ParameterAware {
 	 */
 	public String previewForm(){
 		ids = dataid;
+		return SUCCESS;
+	}
+	
+	/**
+	 * 可填业务表单
+	 * @return
+	 */
+	public String formTableshow(){
+		try {
+			switch (pageset.getPageType()) {
+			case (1): { // 新增
+				String leaveId = UUIDGenerator.getUUID();
+	
+				completedForm = new CompletedForm();
+				completedForm.setDataid(leaveId);
+				completedForm.setCompletedformid(UUIDGenerator.getUUID());
+				completedForm.setProcessid(processid);
+				completedForm.setPcsfromcfgid(pcsfromcfgid);
+				completedForm.setFormtablename(formtablename);
+				
+				return SUCCESS;
+			}
+			case (0): {// 展示
+				//actExLeavetest = this.actExLeavetestManagerInter.getActExLeavetestEntity(ids);
+				return SUCCESS;
+			}
+			case (2): {// 修改
+				//actExLeavetest = this.actExLeavetestManagerInter.getActExLeavetestEntity(ids);
+				return SUCCESS;
+			}
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			pageset=PageSets.initPageSet(pageset, PageType.OTHER, CommitType.FALSE, e);
+		}
 		return SUCCESS;
 	}
 	
@@ -388,12 +452,13 @@ public class ActionFrmFieldQuery extends WebSupport implements ParameterAware {
 		this.informant = informant;
 	}
 
-	public String getFromtablename() {
-		return fromtablename;
+
+	public String getFormtablename() {
+		return formtablename;
 	}
 
-	public void setFromtablename(String fromtablename) {
-		this.fromtablename = fromtablename;
+	public void setFormtablename(String formtablename) {
+		this.formtablename = formtablename;
 	}
 
 	private static final Logger log = Logger.getLogger(ActionFrmFieldQuery.class);
