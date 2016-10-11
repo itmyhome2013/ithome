@@ -13,7 +13,7 @@ public interface PersonDao {
 
 	/**
 	 * 新增
-	 * @param person
+	 * @param person 
 	 */
 	public void insert(Person person);
 	

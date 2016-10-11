@@ -14,7 +14,7 @@ public interface BookDao {
 
 	
 	/**
-	 * 分页查询
+	 * 分页查询 
 	 * @param pageNum  开始页
 	 * @return
 	 */
