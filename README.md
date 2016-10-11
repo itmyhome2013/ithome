@@ -11,6 +11,8 @@
 + Hibernate
 + JDBC
 + Oracle
++ Activiti
++ MongoDB
 
 #### 项目功能
 
