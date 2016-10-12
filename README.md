@@ -11,6 +11,8 @@
 + Hibernate
 + JDBC
 + Oracle
++ Activiti
++ MongoDB
 
 #### 项目功能
 
@@ -21,6 +23,8 @@
 + 文档和文件管理
 + 人口居民管理
 + 自动化表单
++ 工作流管理
++ MongoDB数据管理
 
 
 作者：<a href="http://blog.itmyhome.com">麦田</a>

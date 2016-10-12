@@ -342,7 +342,7 @@ $.extend( {
 				if (index == 0) {
 					ids = obj[idstr];
 				} else {
-					ids = ids + ',' + obj.ID;
+					ids = ids + ',' + obj[idstr];
 				}
 			});
 			return ids;
