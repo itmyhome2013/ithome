@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="ithome"
+  name="ithome_git"
   id="myeclipse.1369449910640"
-  context-root="/ithome"
+  context-root="/ithome_git"
   j2ee-spec="5.0"
-  archive="ithome.war">
+  archive="ithome_git.war">
   <attributes>
-    <attribute name="webrootdir" value="WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 
