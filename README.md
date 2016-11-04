@@ -3,16 +3,16 @@
 
 #### 使用技术
 
-+ EasyUI
-+ Bootstrap
-+ jQuery
-+ Struts2
-+ Spring
-+ Hibernate
++ EasyUI - 1.3.6
++ Bootstrap - 3.3.1
++ jQuery - 1.8.0
++ Struts2 - 2.3.14
++ Spring - 3.1.3
++ Hibernate - 4.1.12
 + JDBC
-+ Oracle
-+ Activiti
-+ MongoDB
++ Oracle - 10g
++ Activiti - 5.1.3
++ Spring Date MongoDB - 1.4.1
 
 #### 项目功能
 
